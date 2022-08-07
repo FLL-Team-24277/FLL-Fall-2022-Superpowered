@@ -1766,7 +1766,7 @@ class ColorSensor:
     def get_color(self):
         """
         Retrieves the detected color of a surface.
-        
+
         Returns
         -----------
         Name of the color.
@@ -1774,7 +1774,7 @@ class ColorSensor:
         Type : string (text)
 
         Values : 'black','violet','blue','cyan','green','yellow','red','white',None
-        
+
         Errors
         -----------
         RuntimeError : The sensor has been disconnected from the Port.

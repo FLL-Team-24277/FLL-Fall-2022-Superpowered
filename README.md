@@ -1,8 +1,11 @@
 # BaseRobotFall2022
-Common team python BaseRobot class
+Common python BaseRobot class for an FLL team. We write a python module which contains our BaseRobot 
+class. The file is uploaded to all of our practice robots using ampy. The team members can then write 
+their mission programs using the BaseRobot class. Eventually we will combine all of the mission programs 
+into one master program for the tournaments.
 
 # WARNING!
-Please do not make any edits in any of the existing files! Almost certainly editing them will not do
+Please do not make any edits in any of these four existing files! Almost certainly editing them will not do
 what you think it does.
 This includes
 - base_robot.py
@@ -19,7 +22,7 @@ files alone.
 base_robot.py
 -------------
 base_robot.py is a special file. This is the BaseRobot class. It contains functions and properties 
-for FLL Team 24277's Base Robot.
+for FLL Team 24277's Base Robot. By the way, this file was written by a 7th grade student on our FLL team!
 
 This file must be uploaded to the hub in order for it to work. Use ampy
 https://learn.adafruit.com/micropython-basics-load-files-and-run-code/install-ampy
@@ -29,7 +32,13 @@ To upload the file, use a command like this
     C:\>ampy -p COM6 put "C:\Users\Me\Documents\LEGO Education SPIKE\TestProj\base_robot.py" /base_robot.py
 
 You will need to know what COM port your computer sees the hub. On windows, go
-to Settings-> bluetooth settings -> More bluetooth settings to find the COM port
+to 
+
+    Settings-> Bluetooth & other devices -> More bluetooth options 
+
+to find the COM port
+
+If you are using USB instead of Bluetooth, I think the procedure is similar, but I have never tried it.
 
 # Instructions
 You will write your programs to move the robot and to do things. VS Code will give you hints 
@@ -44,20 +53,22 @@ Inside there, clone this repository and you will then have
     │   ├── control.py *
     │   └── operator.py *
     ├── base_robot.py *
-    ├── instructions.txt
     ├── LICENSE
     ├── README.md
     ├── main.py @@
-    ├── Mission1.py @@
+    ├── mission1.py @@
     ├── AnyOtherProgramsYouWrite.py @@
 
 
+
 In there you will make your mission program(s), which you can call just about anything, such as
-main.py
-mission1.py
-master.py
-MissionImpossible.py
-AnythingYouWant.py
+- main.py
+- mission1.py
+- master.py
+- chickenMission.py
+- MissionImpossible.py
+- AnythingYouWant.py
+
 etc.
 
 
@@ -76,23 +87,31 @@ Begin your programs with these lines (use mission1.py as a template):
 
 Some generic programming, python and VS Code comments:
 
-Python:
+# Python:
 In python, indenting also matters. Unless you are writing loops or using if/then 
 statements, all of your code MUST start in the first column of each line. Also,
-you can use the line continuation "\" like that import line above, in which case
+you can use the line continuation "\\" like that import line above, in which case
 the indenting doesn't matter for the continued lines.
 
-VS Code configuration:
+# VS Code configuration:
 Install the extension LEGO SPIKE Prime / MINDSTORM Robot Inventor Extension
+
+https://github.com/PeterStaev/lego-spikeprime-mindstorms-vscode
+
+https://marketplace.visualstudio.com/items?itemName=PeterStaev.lego-spikeprime-mindstorms-vscode
+
 Connect your hub to your computer (either BlueTooth or USB)
+
 Open the SPIKE app on your computer and connect to the hub. Install any updates 
 that are required.
-Back in VS Code, in the lower left corner, click on "LEGO Hub: Disconnected" 
-to get it to connect. At the top of the screen, you will see options for ports.
-It can be difficult to figure out which port to use, so you may have to try them 
-all.
 
-Programming:
+Back in VS Code, in the lower left corner, click on "LEGO Hub: Disconnected" 
+to get it to connect. At the top of the screen, you will see options for ports. 
+Select the port from the ampy command earlier and you should be connected. You 
+can then upload mission programs to the Spike program slots and run them from the 
+VS Code interface. Nice!
+
+# Programming:
 When you are writing your code, remember, to python, your robot's name 
 is "br" (see that line up above that starts with br =? That's where your robot 
 got its name). Try typing "br." (without the quotation marks) and see what hints 
