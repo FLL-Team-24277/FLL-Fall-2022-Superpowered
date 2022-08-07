@@ -29,7 +29,13 @@ To upload the file, use a command like this
     C:\>ampy -p COM6 put "C:\Users\Me\Documents\LEGO Education SPIKE\TestProj\base_robot.py" /base_robot.py
 
 You will need to know what COM port your computer sees the hub. On windows, go
-to Settings-> bluetooth settings -> More bluetooth settings to find the COM port
+to 
+
+    Settings-> Bluetooth & other devices -> More bluetooth options 
+
+to find the COM port
+
+If you are using USB instead of Bluetooth, I think the procedure is similar, but I have never tried it.
 
 # Instructions
 You will write your programs to move the robot and to do things. VS Code will give you hints 
