@@ -38,18 +38,19 @@ along the way and will help you to make sure spelling is correct. Yes, spelling 
 First, make a folder where you want to keep your files. Perhaps Documents\FLL.
 Inside there, clone this repository and you will then have
 
-Documents\FLL\BaseRobotFall2022
-├── spike.py *
-├── spike\
-│   ├── control.py *
-│   └── operator.py *
-├── base_robot.py *
-├── instructions.txt
-├── LICENSE
-├── README.md
-├── main.py @@
-├── Mission1.py @@
-├── AnyOtherProgramsYouWrite.py @@
+    Documents\FLL\BaseRobotFall2022
+    ├── spike.py *
+    ├── spike\
+    │   ├── control.py *
+    │   └── operator.py *
+    ├── base_robot.py *
+    ├── instructions.txt
+    ├── LICENSE
+    ├── README.md
+    ├── main.py @@
+    ├── Mission1.py @@
+    ├── AnyOtherProgramsYouWrite.py @@
+
 
 
 In there you will make your mission program(s), which you can call just about anything, such as
