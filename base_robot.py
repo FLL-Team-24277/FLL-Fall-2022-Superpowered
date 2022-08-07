@@ -33,6 +33,9 @@ class BaseRobot():
         self._colorSensorPort = 'F'
         self.driveMotors = MotorPair(self._leftDriveMotorPort, self._rightDriveMotorPort)
         self.debugMode = False
+        self.colorSensor = ColorSensor(self._colorSensorPort)
+        self.rightMedMotor = Motor(self._rightAttachmentMotorPort)
+        self.leftMedMotor = Motor(self._leftAttachmentMotorPort)
         self._tireDiameter = 5.6 #CM
         self._tireCircum = self._tireDiameter * math.pi #CM
 
