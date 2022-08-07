@@ -22,7 +22,7 @@ files alone.
 base_robot.py
 -------------
 base_robot.py is a special file. This is the BaseRobot class. It contains functions and properties 
-for FLL Team 24277's Base Robot.
+for FLL Team 24277's Base Robot. By the way, this file was written by a 7th grade student on our FLL team!
 
 This file must be uploaded to the hub in order for it to work. Use ampy
 https://learn.adafruit.com/micropython-basics-load-files-and-run-code/install-ampy
