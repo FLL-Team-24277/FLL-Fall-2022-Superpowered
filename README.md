@@ -2,7 +2,7 @@
 Common team python BaseRobot class
 
 # WARNING!
-Please do not make any edits in any of the existing files! Almost certainly editing them will not do
+Please do not make any edits in any of these four existing files! Almost certainly editing them will not do
 what you think it does.
 This includes
 - base_robot.py
