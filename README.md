@@ -50,25 +50,20 @@ Inside there, clone this repository and you will then have
     │   ├── control.py *
     │   └── operator.py *
     ├── base_robot.py *
-    ├── instructions.txt
     ├── LICENSE
     ├── README.md
     ├── main.py @@
-    ├── Mission1.py @@
+    ├── mission1.py @@
     ├── AnyOtherProgramsYouWrite.py @@
 
 
 
 In there you will make your mission program(s), which you can call just about anything, such as
-main.py
-
-mission1.py
-
-master.py
-
-MissionImpossible.py
-
-AnythingYouWant.py
+- main.py
+- mission1.py
+- master.py
+- MissionImpossible.py
+- AnythingYouWant.py
 
 etc.
 
