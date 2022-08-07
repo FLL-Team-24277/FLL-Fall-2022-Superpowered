@@ -86,7 +86,7 @@ Some generic programming, python and VS Code comments:
 Python:
 In python, indenting also matters. Unless you are writing loops or using if/then 
 statements, all of your code MUST start in the first column of each line. Also,
-you can use the line continuation "\" like that import line above, in which case
+you can use the line continuation "\\" like that import line above, in which case
 the indenting doesn't matter for the continued lines.
 
 VS Code configuration:
