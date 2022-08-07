@@ -83,13 +83,13 @@ Begin your programs with these lines (use mission1.py as a template):
 
 Some generic programming, python and VS Code comments:
 
-##Python:
+#Python:
 In python, indenting also matters. Unless you are writing loops or using if/then 
 statements, all of your code MUST start in the first column of each line. Also,
 you can use the line continuation "\\" like that import line above, in which case
 the indenting doesn't matter for the continued lines.
 
-##VS Code configuration:
+#VS Code configuration:
 Install the extension LEGO SPIKE Prime / MINDSTORM Robot Inventor Extension
 
 Connect your hub to your computer (either BlueTooth or USB)
@@ -102,7 +102,7 @@ to get it to connect. At the top of the screen, you will see options for ports.
 It can be difficult to figure out which port to use, so you may have to try them 
 all.
 
-##Programming:
+#Programming:
 When you are writing your code, remember, to python, your robot's name 
 is "br" (see that line up above that starts with br =? That's where your robot 
 got its name). Try typing "br." (without the quotation marks) and see what hints 
