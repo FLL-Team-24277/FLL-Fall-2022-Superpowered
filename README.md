@@ -1,5 +1,5 @@
 # BaseRobotFall2022
-Common python BaseRobot class for an FLL team. We write a python module which contains our BaseRobot 
+Common python BaseRobot class for our FLL team. We write a python module which contains our BaseRobot 
 class. The file is uploaded to all of our practice robots using ampy. The team members can then write 
 their mission programs using the BaseRobot class. Eventually we will combine all of the mission programs 
 into one master program for the tournaments.
