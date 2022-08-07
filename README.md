@@ -95,15 +95,20 @@ the indenting doesn't matter for the continued lines.
 # VS Code configuration:
 Install the extension LEGO SPIKE Prime / MINDSTORM Robot Inventor Extension
 
+https://github.com/PeterStaev/lego-spikeprime-mindstorms-vscode
+
+https://marketplace.visualstudio.com/items?itemName=PeterStaev.lego-spikeprime-mindstorms-vscode
+
 Connect your hub to your computer (either BlueTooth or USB)
 
 Open the SPIKE app on your computer and connect to the hub. Install any updates 
 that are required.
 
 Back in VS Code, in the lower left corner, click on "LEGO Hub: Disconnected" 
-to get it to connect. At the top of the screen, you will see options for ports.
-It can be difficult to figure out which port to use, so you may have to try them 
-all.
+to get it to connect. At the top of the screen, you will see options for ports. 
+Select the port from the ampy command earlier and you should be connected. You 
+can then upload mission programs to the Spike program slots and run them from the 
+VS Code interface. Nice!
 
 # Programming:
 When you are writing your code, remember, to python, your robot's name 
