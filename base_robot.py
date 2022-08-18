@@ -99,8 +99,8 @@ class BaseRobot():
         default: no default value
         Distance: How far the robot should go in cm (float)
         type: float
-        values: any value above 16.0. You can enter smaller numbers, but the \
-            robot will still go 16cm
+        values: any value above 45.0. You can enter smaller numbers, but the \
+            robot will still go 45cm
         default: no default value
         See Also
         --------
@@ -109,7 +109,7 @@ class BaseRobot():
         -------
         >>> import base_robot
         >>> br = base_robot.BaseRobot()
-        >>> br.GyroDriveOnHeading(90, 40) #drive on heading 90 for 40 cm
+        >>> br.GyroDriveOnHeading(40, 90) #drive on heading 90 for 40 cm
         """
         #Sets max speed
         maxSpeed = 75
@@ -122,7 +122,6 @@ class BaseRobot():
         #Sets counted motor port and sets the degrees counted to 0
         testmotor = Motor(self._rightDriveMotorPort)
         testmotor.set_degrees_counted(0)
-        print(str(totalDegreesNeeded))
 
         #Accel to full speed
         for currentSpeed in range(0, maxSpeed, 5):
@@ -131,11 +130,10 @@ class BaseRobot():
             wait_for_seconds(0.1)
         
         #Cruise at full speed
-        slowDownPoint = totalDegreesNeeded - 360
-        print(str(slowDownPoint))
+        slowDownPoint = totalDegreesNeeded - 600
         while(testmotor.get_degrees_counted() < slowDownPoint):
             #Print the degrees counted
-            print(str(testmotor.get_degrees_counted()))
+            #print(str(testmotor.get_degrees_counted()))
             correction = heading - self.hub.motion_sensor.get_yaw_angle()
             self.driveMotors.start(steering = correction * proportionFactor, speed = maxSpeed)
         
@@ -147,6 +145,7 @@ class BaseRobot():
             
         #Stop
         self.driveMotors.stop()
+        wait_for_seconds(0.5)
     
     def AccelGyroDriveForward(self, distance):
         """
