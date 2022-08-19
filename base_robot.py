@@ -109,7 +109,7 @@ class BaseRobot():
         -------
         >>> import base_robot
         >>> br = base_robot.BaseRobot()
-        >>> br.GyroDriveOnHeading(40, 90) #drive on heading 90 for 40 cm
+        >>> br.GyroDriveOnHeading(50, 90) #drive on heading 90 for 50 cm
         """
         #Sets max speed
         maxSpeed = 75
