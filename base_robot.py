@@ -31,7 +31,8 @@ class BaseRobot():
         self._leftAttachmentMotorPort = 'B'
         self._rightAttachmentMotorPort = 'D'
         self._colorSensorPort = 'F'
-        self.driveMotors = MotorPair(self._leftDriveMotorPort, self._rightDriveMotorPort)
+        self.driveMotors = MotorPair(self._leftDriveMotorPort, \
+            self._rightDriveMotorPort)
         self.debugMode = False
         self.colorSensor = ColorSensor(self._colorSensorPort)
         self.rightMedMotor = Motor(self._rightAttachmentMotorPort)
@@ -115,10 +116,11 @@ class BaseRobot():
         maxSpeed = 75
         minSpeed = 10
         proportionFactor = 1
-        #Calculates the amount of rotations in the distance and multiplies it by 360 to make it degrees
+        # Calculates the amount of rotations in the distance
+        # and multiplies it by 360 to make it degrees
         totalDegreesNeeded = distance / self._tireCircum * 360
-        #Resets gyro angle
         MotionSensor().reset_yaw_angle()
+
         #Sets counted motor port and sets the degrees counted to 0
         testmotor = Motor(self._rightDriveMotorPort)
         testmotor.set_degrees_counted(0)
@@ -126,7 +128,8 @@ class BaseRobot():
         #Accel to full speed
         for currentSpeed in range(0, maxSpeed, 5):
             correction =  heading - self.hub.motion_sensor.get_yaw_angle()
-            self.driveMotors.start(steering = correction * proportionFactor, speed = currentSpeed)
+            self.driveMotors.start(steering = correction * proportionFactor, \
+                speed = currentSpeed)
             wait_for_seconds(0.1)
         
         #Cruise at full speed
@@ -135,12 +138,14 @@ class BaseRobot():
             #Print the degrees counted
             #print(str(testmotor.get_degrees_counted()))
             correction = heading - self.hub.motion_sensor.get_yaw_angle()
-            self.driveMotors.start(steering = correction * proportionFactor, speed = maxSpeed)
+            self.driveMotors.start(steering = correction * proportionFactor, \
+                speed = maxSpeed)
         
         #Slow down
         for currentSpeed in range(maxSpeed, minSpeed, -5):
             correction = heading - self.hub.motion_sensor.get_yaw_angle()
-            self.driveMotors.start(steering = correction * proportionFactor, speed = currentSpeed)
+            self.driveMotors.start(steering = correction * proportionFactor, \
+                speed = currentSpeed)
             wait_for_seconds(0.1)
             
         #Stop
@@ -169,8 +174,10 @@ class BaseRobot():
         >>> br = base_robot.BaseRobot()
         >>> br.AccelGyroDriveForward(20)
         """
-        #Runs GyroDriveOnHeading with the current gyro yaw angle and the desired distance
-        self.GyroDriveOnHeading(distance, self.hub.motion_sensor.get_yaw_angle())
+        # Runs GyroDriveOnHeading with the current gyro yaw angle 
+        # and the desired distance
+        self.GyroDriveOnHeading(distance, \
+            self.hub.motion_sensor.get_yaw_angle())
 
     def TurnRightAndDriveOnHeading(self, distance, heading):
         """
@@ -201,7 +208,8 @@ class BaseRobot():
         """
         #Tests for direction and debug mode
         if heading < self.hub.motion_sensor.get_yaw_angle() and self.debugMode:
-            sys.exit("TurnRightAndDriveOnHeading Error: Invalid Heading, try using TurnLeftAndDriveOnHeading Method")
+            sys.exit("TurnRightAndDriveOnHeading Error: Invalid Heading, \
+                try using TurnLeftAndDriveOnHeading Method")
         
         #Turns Right
         self.GyroTurn(heading - self.hub.motion_sensor.get_yaw_angle())
@@ -237,7 +245,8 @@ class BaseRobot():
         """
         #Tests for direction and debug mode
         if heading > self.hub.motion_sensor.get_yaw_angle() and self.debugMode:
-            sys.exit("TurnLeftAndDriveOnHeading Error: Invalid Heading, try using TurnRightAndDriveOnHeading Method")
+            sys.exit("TurnLeftAndDriveOnHeading Error: Invalid Heading, try \
+                using TurnRightAndDriveOnHeading Method")
         
         #Turns Left
         self.GyroTurn(self.hub.motion_sensor.get_yaw_angle() - heading)
