@@ -50,7 +50,8 @@ Inside there, clone this repository and you will then have
     Documents\FLL\BaseRobotFall2022
     ├── spike.py *
     ├── Help\
-        └── Lego Spike Prime and Python.pdf
+    │   ├── Lego Spike Prime and Python.pdf
+    │   └── other pdf help files and folders...
     ├── spike\
     │   ├── control.py *
     │   └── operator.py *
