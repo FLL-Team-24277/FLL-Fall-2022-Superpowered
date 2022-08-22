@@ -25,7 +25,7 @@ class BaseRobot():
     """
     def __init__(self):
         self.hub = PrimeHub()
-        self._version = "1.5 8/5/2022"
+        self._version = "2.0 8/22/2022"
         self._leftDriveMotorPort = 'E'
         self._rightDriveMotorPort = 'A'
         self._leftAttachmentMotorPort = 'B'
@@ -39,6 +39,7 @@ class BaseRobot():
         self.leftMedMotor = Motor(self._leftAttachmentMotorPort)
         self._tireDiameter = 5.6 #CM
         self._tireCircum = self._tireDiameter * math.pi #CM
+        self.hub.motion_sensor.reset_yaw_angle()
 
     
 
@@ -100,8 +101,8 @@ class BaseRobot():
         default: no default value
         Distance: How far the robot should go in cm (float)
         type: float
-        values: any value above 45.0. You can enter smaller numbers, but the \
-            robot will still go 45cm
+        values: any value above 25.0. You can enter smaller numbers, but the \
+            robot will still go 25cm
         default: no default value
         See Also
         --------
@@ -113,7 +114,7 @@ class BaseRobot():
         >>> br.GyroDriveOnHeading(50, 90) #drive on heading 90 for 50 cm
         """
         #Sets max speed
-        maxSpeed = 75
+        maxSpeed = 50
         minSpeed = 10
         proportionFactor = 1
         # Calculates the amount of rotations in the distance
@@ -133,7 +134,7 @@ class BaseRobot():
             wait_for_seconds(0.1)
         
         #Cruise at full speed
-        slowDownPoint = totalDegreesNeeded - 600
+        slowDownPoint = totalDegreesNeeded - 300
         while(testmotor.get_degrees_counted() < slowDownPoint):
             #Print the degrees counted
             #print(str(testmotor.get_degrees_counted()))
