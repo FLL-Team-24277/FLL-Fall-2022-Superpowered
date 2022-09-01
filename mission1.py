@@ -11,13 +11,12 @@ br = base_robot.BaseRobot()
 br.hub.motion_sensor.reset_yaw_angle()
 
 br.AccelGyroDriveForward(27) # must be over 25
-#br.driveMotors.move_tank(36, "cm", 50, 50)
-#br.TurnRightAndDriveOnHeading(distance=30, heading=45)
-#br.TurnRightAndDriveOnHeading(distance=20, heading=45)
+br.driveMotors.move_tank(36, "cm", 50, 50)
+br.TurnRightAndDriveOnHeading(distance=30, heading=45)
 
-# br.hub.light_matrix.show_image("ARROW_S")
-# br.leftMedMotor.run_for_seconds(2, 100)
-# br.leftMedMotor.run_for_seconds(2, -100)
+br.hub.light_matrix.show_image("ARROW_S")
+br.leftMedMotor.run_for_seconds(2, 100)
+br.leftMedMotor.run_for_seconds(2, -100)
 # br.leftMedMotor.set_stop_action("coast")
 # br.leftMedMotor.stop()
 
@@ -27,11 +26,11 @@ br.AccelGyroDriveForward(27) # must be over 25
 # br.rightMedMotor.set_stop_action("hold")
 # br.rightMedMotor.stop()
 # br.hub.motion_sensor.reset_yaw_angle()
-# br.GyroTurn(-87) # turn to the right 90 degrees
+br.GyroTurn(90) # turn to the right 90 degrees
 # br.hub.motion_sensor.reset_yaw_angle()
 # br.GyroTurn(87) # turn to the right 90 degrees
 
-# br.GyroTurn(-45) # turn to the left 45 degrees
+br.GyroTurn(-45) # turn to the left 45 degrees
 
 # #back up gently to make sure the robot is straight (like wall squaring)
 # #then reset the gyro
