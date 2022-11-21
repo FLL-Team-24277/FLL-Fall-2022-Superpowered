@@ -147,7 +147,7 @@ class BaseRobot():
             #print(str(testmotor.get_degrees_counted()))
             correction = heading - self.hub.motion_sensor.get_yaw_angle()
             self.driveMotors.start(steering = correction * \
-                proportionFactor, speed = maxSpeed)
+                proportionFactor, speed = maximumSpeed)
         
         #Slow down
         for currentSpeed in range(maximumSpeed, minSpeed, -5):
