@@ -25,7 +25,7 @@ class BaseRobot():
     """
     def __init__(self):
         self.hub = PrimeHub()
-        self._version = "2.0 8/22/2022"
+        self._version = "2.1 11/20/2022 (7:59 P.M.)"
         self._leftDriveMotorPort = 'E'
         self._rightDriveMotorPort = 'A'
         self._leftAttachmentMotorPort = 'B'
@@ -64,6 +64,8 @@ class BaseRobot():
             robot doesn't turn more than necessary.
         default: No default value
         """
+        #Reset Yaw Angle
+        MotionSensor().reset_yaw_angle()
         #Tests for angle and debug mode
         if self.debugMode and (angle > 179 or angle < -180):
             sys.exit("GyroTurn() Error: Angle must be between -180 and 180")
@@ -82,7 +84,7 @@ class BaseRobot():
         self.driveMotors.stop()
     
     
-    def GyroDriveOnHeading(self, distance, heading):
+    def GyroDriveOnHeading(self, distance, heading, maximumSpeed=50):
         """
         Drives the robot very straight on a `Heading` for a \
         `Distance`, using acceleration and the gyro. \
@@ -104,6 +106,11 @@ class BaseRobot():
         values: any value above 25.0. You can enter smaller numbers, but the \
             robot will still go 25cm
         default: no default value
+        MaximumSpeed: The speed that the robot will accelerate to and cruise at
+        type: float
+        values: any value between 10 and 100. Anything lower than 11, and \
+            the robot won't decelerate.
+        default: 50
         See Also
         --------
         Also look at ``AccelGyroDriveFwd()``.
@@ -113,8 +120,7 @@ class BaseRobot():
         >>> br = base_robot.BaseRobot()
         >>> br.GyroDriveOnHeading(50, 90) #drive on heading 90 for 50 cm
         """
-        #Sets max speed
-        maxSpeed = 50
+        #Sets minimum speed
         minSpeed = 10
         proportionFactor = 1
         # Calculates the amount of rotations in the distance
@@ -127,7 +133,7 @@ class BaseRobot():
         testmotor.set_degrees_counted(0)
 
         #Accel to full speed
-        for currentSpeed in range(0, maxSpeed, 5):
+        for currentSpeed in range(0, maximumSpeed, 5):
             correction =  heading - self.hub.motion_sensor.get_yaw_angle()
             self.driveMotors.start(steering = correction * proportionFactor, \
                 speed = currentSpeed)
@@ -140,10 +146,10 @@ class BaseRobot():
             #print(str(testmotor.get_degrees_counted()))
             correction = heading - self.hub.motion_sensor.get_yaw_angle()
             self.driveMotors.start(steering = correction * proportionFactor, \
-                speed = maxSpeed)
+                speed = maximumSpeed)
         
         #Slow down
-        for currentSpeed in range(maxSpeed, minSpeed, -5):
+        for currentSpeed in range(maximumSpeed, minSpeed, -5):
             correction = heading - self.hub.motion_sensor.get_yaw_angle()
             self.driveMotors.start(steering = correction * proportionFactor, \
                 speed = currentSpeed)
@@ -153,7 +159,7 @@ class BaseRobot():
         self.driveMotors.stop()
         wait_for_seconds(0.5)
     
-    def AccelGyroDriveForward(self, distance):
+    def AccelGyroDriveForward(self, distance, maximumSpeed=50):
         """
         Drives the robot very straight for `distance`, using \
             acceleration and gyro.
@@ -169,6 +175,11 @@ class BaseRobot():
         values: Any value above 16.0. You can enter smaller numbers, but the \
             robot will still go 16cm
         default: No default value
+        MaximumSpeed: The speed that the robot will accelerate to and cruise at
+        type: float
+        values: any value between 10 and 100. Anything lower than 11, and \
+            the robot won't decelerate.
+        default: 50
         Example
         -------
         >>> import base_robot
@@ -177,10 +188,11 @@ class BaseRobot():
         """
         # Runs GyroDriveOnHeading with the current gyro yaw angle 
         # and the desired distance
+        MotionSensor().reset_yaw_angle()
         self.GyroDriveOnHeading(distance, \
-            self.hub.motion_sensor.get_yaw_angle())
+            self.hub.motion_sensor.get_yaw_angle(), maximumSpeed)
 
-    def TurnRightAndDriveOnHeading(self, distance, heading):
+    def TurnRightAndDriveOnHeading(self, distance, heading, maximumSpeed=50):
         """
         Turns the robot to the right until the `heading` \
         is reached. Then drives on the `heading` until \
@@ -201,6 +213,11 @@ class BaseRobot():
         values: any value above 16.0. You can enter smaller numbers, but the \
             robot will still go 16cm
         default: no default value
+        MaximumSpeed: The speed that the robot will accelerate to and cruise at
+        type: float
+        values: any value between 10 and 100. Anything lower than 11, and \
+            the robot won't decelerate.
+        default: 50
         Example
         -------
         >>> import base_robot
@@ -212,12 +229,13 @@ class BaseRobot():
             sys.exit("TurnRightAndDriveOnHeading Error: Invalid Heading, \
                 try using TurnLeftAndDriveOnHeading Method")
         
+        MotionSensor.reset_yaw_angle()
         #Turns Right
         self.GyroTurn(heading - self.hub.motion_sensor.get_yaw_angle())
         #Drives on selected Heading
-        self.GyroDriveOnHeading(distance, 0)
+        self.GyroDriveOnHeading(distance, 0, maximumSpeed)
 
-    def TurnLeftAndDriveOnHeading(self, distance, heading):
+    def TurnLeftAndDriveOnHeading(self, distance, heading, maximumSpeed=50):
         """
         Turns the robot to the left until the `heading` \
         is reached. Then drives on the `heading` until \
@@ -238,6 +256,11 @@ class BaseRobot():
         values: any value above 16.0. You can enter smaller numbers, but the \
             robot will still go 16cm
         default: no default value
+        MaximumSpeed: The speed that the robot will accelerate to and cruise at
+        type: float
+        values: any value between 10 and 100. Anything lower than 11, and \
+            the robot won't decelerate.
+        default: 50
         Example
         -------
         >>> import base_robot
@@ -249,10 +272,11 @@ class BaseRobot():
             sys.exit("TurnLeftAndDriveOnHeading Error: Invalid Heading, try \
                 using TurnRightAndDriveOnHeading Method")
         
+        MotionSensor.reset_yaw_angle()
         #Turns Left
         self.GyroTurn(self.hub.motion_sensor.get_yaw_angle() - heading)
         #Drives on selected Heading
-        self.GyroDriveOnHeading(distance, 0)
+        self.GyroDriveOnHeading(distance, 0, maximumSpeed)
     
     def GetVersion(self, number):
         return self._version
