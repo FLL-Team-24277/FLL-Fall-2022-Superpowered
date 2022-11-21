@@ -11,9 +11,9 @@ class BaseRobot():
     """
     A collection of methods and Spike Prime objects for FLL Team 24277. \
     The BaseRobot class has two drive motors as a MotorPair, two medium \
-    motors for moving attachments, and all of the base methods available for \
-    Spike Prime sensors and motors. It also includes some custom methods \
-    for moving the robot. Enjoy!
+    motors for moving attachments, and all of the base methods available \
+    for Spike Prime sensors and motors. It also includes some custom \
+    methods for moving the robot. Enjoy!
 
     Example:
 
@@ -46,19 +46,19 @@ class BaseRobot():
     def GyroTurn(self, angle):
         """
         Turns the robot to the specified `angle`. 
-        Positive numbers turn to the right, negative numbers turn the robot \
-            to the left. Note that when the robot makes the turn, it will \
-            always overshoot by about seven degrees. In other words if you \
-            need a +90 degree turn, you will probably end up commanding \
-            something around +83 degrees. You may also want to put a \
-            wait_for_seconds(0.2) or something like that after a gyro turn. \
-            Just to make sure the robot has stopped moving before continuing \
-            with more instructions.
+        Positive numbers turn to the right, negative numbers turn the \
+        robot to the left. Note that when the robot makes the turn, it \
+        will always overshoot by about seven degrees. In other words if \
+        you need a +90 degree turn, you will probably end up commanding \
+        something around +83 degrees. You may also want to put a \
+        wait_for_seconds(0.2) or something like that after a gyro turn. \
+        Just to make sure the robot has stopped moving before continuing \
+        with more instructions.
         Parameter
         -------------
         angle: Where the robot should stop turning at. \
-            Positive values turn the robot to the right, negative values turn \
-            to the left.
+            Positive values turn the robot to the right, negative values \
+            turn to the left.
         type: float
         values: Any. Best to keep the numbers less than 180, just so the \
             robot doesn't turn more than necessary.
@@ -66,7 +66,8 @@ class BaseRobot():
         """
         #Tests for angle and debug mode
         if self.debugMode and (angle > 179 or angle < -180):
-            sys.exit("GyroTurn() Error: Angle must be between -180 and 180")
+            sys.exit("GyroTurn() Error: Angle must be between -180 \
+                and 180")
         #Sets turn speed
         gyroTurnSpeed = 10
         #Tests if the angle is positive.
@@ -96,13 +97,13 @@ class BaseRobot():
         Heading: On what heading should the robot drive (float)
         type: float
         values: any. Best if the `Heading` is close to the current \
-            heading. Unpredictable robot movement may occur for large heading \
-            differences.
+            heading. Unpredictable robot movement may occur for large \
+            heading differences.
         default: no default value
         Distance: How far the robot should go in cm (float)
         type: float
-        values: any value above 25.0. You can enter smaller numbers, but the \
-            robot will still go 25cm
+        values: any value above 25.0. You can enter smaller numbers, but \
+            the robot will still go 25cm
         default: no default value
         See Also
         --------
@@ -129,8 +130,8 @@ class BaseRobot():
         #Accel to full speed
         for currentSpeed in range(0, maxSpeed, 5):
             correction =  heading - self.hub.motion_sensor.get_yaw_angle()
-            self.driveMotors.start(steering = correction * proportionFactor, \
-                speed = currentSpeed)
+            self.driveMotors.start(steering = correction * \
+                proportionFactor, speed = currentSpeed)
             wait_for_seconds(0.1)
         
         #Cruise at full speed
@@ -139,14 +140,14 @@ class BaseRobot():
             #Print the degrees counted
             #print(str(testmotor.get_degrees_counted()))
             correction = heading - self.hub.motion_sensor.get_yaw_angle()
-            self.driveMotors.start(steering = correction * proportionFactor, \
-                speed = maxSpeed)
+            self.driveMotors.start(steering = correction * \
+                proportionFactor, speed = maxSpeed)
         
         #Slow down
         for currentSpeed in range(maxSpeed, minSpeed, -5):
             correction = heading - self.hub.motion_sensor.get_yaw_angle()
-            self.driveMotors.start(steering = correction * proportionFactor, \
-                speed = currentSpeed)
+            self.driveMotors.start(steering = correction * \
+                proportionFactor, speed = currentSpeed)
             wait_for_seconds(0.1)
             
         #Stop
@@ -166,8 +167,8 @@ class BaseRobot():
         ----------
         Distance: How far the robot should go in cm
         type: float
-        values: Any value above 16.0. You can enter smaller numbers, but the \
-            robot will still go 16cm
+        values: Any value above 16.0. You can enter smaller numbers, but\
+            the robot will still go 16cm
         default: No default value
         Example
         -------
@@ -192,23 +193,25 @@ class BaseRobot():
         ----------
         heading: On what heading should the robot drive
         type: float
-        values: any. However, it must be a heading larger than the current \
-            heading (that is, to the right). If a heading is entered that is \
-            less than the current heading, the program will exit. default: no \
-            default value
+        values: any. However, it must be a heading larger than the \
+            current heading (that is, to the right). If a heading is \
+            entered that is less than the current heading, the program \
+            will exit. default: no default value
         distance: How far the robot should go in cm
         type: float
-        values: any value above 16.0. You can enter smaller numbers, but the \
-            robot will still go 16cm
+        values: any value above 16.0. You can enter smaller numbers, but\
+            the robot will still go 16cm
         default: no default value
         Example
         -------
         >>> import base_robot
         >>> br = base_robot.BaseRobot()
-        >>> br.TurnRightAndDriveOnHeading(90, 40) #drive heading 90 for 40 cm
+        >>> br.TurnRightAndDriveOnHeading(90, 40) #drive heading 90 for\
+        40 cm
         """
         #Tests for direction and debug mode
-        if heading < self.hub.motion_sensor.get_yaw_angle() and self.debugMode:
+        if heading < self.hub.motion_sensor.get_yaw_angle() and \
+            self.debugMode:
             sys.exit("TurnRightAndDriveOnHeading Error: Invalid Heading, \
                 try using TurnLeftAndDriveOnHeading Method")
         
@@ -229,25 +232,27 @@ class BaseRobot():
         ----------
         heading: On what heading should the robot drive
         type: float
-        values: any. However, it must be a heading larger than the current \
-            heading (that is, to the left). If a heading is entered that is \
-            less than the current heading, the program will exit. default: no \
-            default value
+        values: any. However, it must be a heading larger than the current\
+            heading (that is, to the left). If a heading is entered that \
+            is less than the current heading, the program will exit. \
+            default: no default value
         distance: How far the robot should go in cm
         type: float
-        values: any value above 16.0. You can enter smaller numbers, but the \
-            robot will still go 16cm
+        values: any value above 16.0. You can enter smaller numbers, but \
+            the robot will still go 16cm
         default: no default value
         Example
         -------
         >>> import base_robot
         >>> br = base_robot.BaseRobot()
-        >>> br.TurnLeftAndDriveOnHeading(90, 40) #drive heading 90 for 40 cm
+        >>> br.TurnLeftAndDriveOnHeading(90, 40) #drive heading 90 for \
+        40 cm
         """
         #Tests for direction and debug mode
-        if heading > self.hub.motion_sensor.get_yaw_angle() and self.debugMode:
-            sys.exit("TurnLeftAndDriveOnHeading Error: Invalid Heading, try \
-                using TurnRightAndDriveOnHeading Method")
+        if heading > self.hub.motion_sensor.get_yaw_angle() and \
+            self.debugMode:
+            sys.exit("TurnLeftAndDriveOnHeading Error: Invalid Heading, \
+                try using TurnRightAndDriveOnHeading Method")
         
         #Turns Left
         self.GyroTurn(self.hub.motion_sensor.get_yaw_angle() - heading)
