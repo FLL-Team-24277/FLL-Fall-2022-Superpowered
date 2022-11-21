@@ -107,7 +107,7 @@ class BaseRobot():
         values: any value above 25.0. You can enter smaller numbers, but \
             the robot will still go 25cm
         default: no default value
-        MaximumSpeed: The speed that the robot will accelerate to and cruise at
+        MaximumSpeed: The speed that the robot will accelerate to and cruise
         type: float
         values: any value between 10 and 100. Anything lower than 11, and \
             the robot won't decelerate.
@@ -176,7 +176,7 @@ class BaseRobot():
         values: Any value above 16.0. You can enter smaller numbers, but\
             the robot will still go 16cm
         default: No default value
-        MaximumSpeed: The speed that the robot will accelerate to and cruise at
+        MaximumSpeed: The speed that the robot will accelerate to and cruise
         type: float
         values: any value between 10 and 100. Anything lower than 11, and \
             the robot won't decelerate.
@@ -214,7 +214,7 @@ class BaseRobot():
         values: any value above 16.0. You can enter smaller numbers, but\
             the robot will still go 16cm
         default: no default value
-        MaximumSpeed: The speed that the robot will accelerate to and cruise at
+        MaximumSpeed: The speed that the robot will accelerate to and cruise
         type: float
         values: any value between 10 and 100. Anything lower than 11, and \
             the robot won't decelerate.
@@ -259,7 +259,7 @@ class BaseRobot():
         values: any value above 16.0. You can enter smaller numbers, but \
             the robot will still go 16cm
         default: no default value
-        MaximumSpeed: The speed that the robot will accelerate to and cruise at
+        MaximumSpeed: The speed that the robot will accelerate to and cruise
         type: float
         values: any value between 10 and 100. Anything lower than 11, and \
             the robot won't decelerate.
