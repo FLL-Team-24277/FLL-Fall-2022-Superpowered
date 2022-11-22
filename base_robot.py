@@ -1,11 +1,13 @@
-from spike import PrimeHub, LightMatrix, Button, StatusLight, \
-    ForceSensor, MotionSensor, Speaker, ColorSensor, App, \
-    DistanceSensor, Motor, MotorPair
-from spike.control import wait_for_seconds, wait_until, Timer
-from spike.operator import greater_than, greater_than_or_equal_to, \
-    less_than, less_than_or_equal_to, equal_to, not_equal_to
 import math
 import sys
+
+from spike import (App, Button, ColorSensor, DistanceSensor, ForceSensor,
+                   LightMatrix, MotionSensor, Motor, MotorPair, PrimeHub,
+                   Speaker, StatusLight)
+from spike.control import Timer, wait_for_seconds, wait_until
+from spike.operator import (equal_to, greater_than, greater_than_or_equal_to,
+                            less_than, less_than_or_equal_to, not_equal_to)
+
 
 class BaseRobot():
     """
