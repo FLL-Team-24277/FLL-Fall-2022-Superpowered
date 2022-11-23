@@ -73,7 +73,7 @@ def mission3(): #Red
     br.RightMedMotorRunForSeconds(1, -10)
     br.MoveTank(-50, 'cm',50,50)
 
-    br.WaitForButtonPress
+    br.WaitForButtonPress()
 
     #east end drive
 
