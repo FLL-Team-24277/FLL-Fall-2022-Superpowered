@@ -446,23 +446,38 @@ class BaseRobot():
         """
         Moves the Driving Base using differential (tank) steering.
         
-        The speed of each motor can be controlled independently for differential (tank) drive Driving Bases.
+        The speed of each motor can be controlled independently for\
+            differential (tank) drive Driving Bases.
         
-        When unit is 'cm' or 'in', the amount of the unit parameter is the horizontal distance that the Driving Base will travel before stopping. The relationship between motor rotations and distance traveled can be adjusted by calling set_motor_rotation().
+        When unit is 'cm' or 'in', the amount of the unit parameter is the\
+            horizontal distance that the Driving Base will travel before\
+            stopping. The relationship between motor rotations and distance\
+            traveled can be adjusted by calling set_motor_rotation().
         
-        When 'unit' is 'rotations' or 'degrees', the amount parameter value specifies how much the motor axle will turn before stopping.
+        When 'unit' is 'rotations' or 'degrees', the amount parameter value\
+            specifies how much the motor axle will turn before stopping.
         
-        When unit is 'seconds', the amount parameter value specifies the amount of time the motors will run before stopping.
+        When unit is 'seconds', the amount parameter value specifies the\
+            amount of time the motors will run before stopping.
         
-        If left_speed or right_speed is outside of the allowed range, the value will be set to -100 or 100 depending whether the value is positive or negative.
+        If left_speed or right_speed is outside of the allowed range, the\
+            value will be set to -100 or 100 depending whether the value is\
+            positive or negative.
         
-        If one of the speed is negative (left_speed or right_speed), then the motor with that negative speed will run backward instead of forward. If the value of the amount parameter is negative, both motors will rotate backward instead of forward. If both the speed values (left_speed or right_speed) are negative and the value of the amount parameter is negative, then the both motors will rotate forward.
+        If one of the speed is negative (left_speed or right_speed), then\
+            the motor with that negative speed will run backward instead of\
+            forward. If the value of the amount parameter is negative, both\
+            motors will rotate backward instead of forward. If both the\
+            speed values (left_speed or right_speed) are negative and the\
+            value of the amount parameter is negative, then the both motors\
+            will rotate forward.
         
         The program will not continue until amount is reached.
         
         Parameters
         -----------------
-        amount : The quantity to move in relation to the specified unit of measurement.
+        amount : The quantity to move in relation to the specified unit of\
+            measurement.
         
         Type : float (decimal number)
         
@@ -503,11 +518,13 @@ class BaseRobot():
         
         Errors
         --------------
-        TypeError : amount, left_speed or right_speed is not a number or unit is not a string.
+        TypeError : amount, left_speed or right_speed is not a number or\
+            unit is not a string.
         
         ValueError : unit is not one of the allowed values.
         
-        RuntimeError : One or both of the Ports do not have a motor connected or the motors could not be paired.
+        RuntimeError : One or both of the Ports do not have a motor\
+            connected or the motors could not be paired.
         """
         
         #Checks for abort
