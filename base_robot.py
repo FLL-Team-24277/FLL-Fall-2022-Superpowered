@@ -41,6 +41,8 @@ class BaseRobot():
         self.leftMedMotor = Motor(self._leftAttachmentMotorPort)
         self._tireDiameter = 5.6 #CM
         self._tireCircum = self._tireDiameter * math.pi #CM
+
+        # Reset the yaw angle when the baseRobot is declared
         self.hub.motion_sensor.reset_yaw_angle()
 
     
