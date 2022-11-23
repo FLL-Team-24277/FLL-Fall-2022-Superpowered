@@ -27,7 +27,7 @@ class BaseRobot():
     """
     def __init__(self):
         self.hub = PrimeHub()
-        self._version = "2.1 11/20/2022 (7:59 P.M.)"
+        self._version = "2.2 11/22/2022"
         self._leftDriveMotorPort = 'E'
         self._rightDriveMotorPort = 'A'
         self._leftAttachmentMotorPort = 'B'
@@ -66,6 +66,11 @@ class BaseRobot():
             robot doesn't turn more than necessary.
         default: No default value
         """
+
+        #Checks for abort
+        if(self.hub.right_button.is_pressed()):
+            return()
+
         #Reset Yaw Angle
         MotionSensor().reset_yaw_angle()
         #Tests for angle and debug mode
@@ -123,6 +128,9 @@ class BaseRobot():
         >>> br = base_robot.BaseRobot()
         >>> br.GyroDriveOnHeading(50, 90) #drive on heading 90 for 50 cm
         """
+        #Checks for abort
+        if(self.hub.right_button.is_pressed()):
+            return()
         #Sets minimum speed
         minSpeed = 10
         proportionFactor = 1
@@ -189,7 +197,11 @@ class BaseRobot():
         >>> br = base_robot.BaseRobot()
         >>> br.AccelGyroDriveForward(20)
         """
-        # Runs GyroDriveOnHeading with the current gyro yaw angle 
+        #Checks for abort
+        if(self.hub.right_button.is_pressed()):
+            return()
+
+        # Runs GyroDriveOnHeading with the current gyro yaw angle
         # and the desired distance
         MotionSensor().reset_yaw_angle()
         self.GyroDriveOnHeading(distance, \
@@ -228,6 +240,10 @@ class BaseRobot():
         >>> br.TurnRightAndDriveOnHeading(90, 40) #drive heading 90 for\
         40 cm
         """
+        #Checks for abort
+        if(self.hub.right_button.is_pressed()):
+            return()
+
         #Tests for direction and debug mode
         if heading < self.hub.motion_sensor.get_yaw_angle() and \
             self.debugMode:
@@ -273,6 +289,10 @@ class BaseRobot():
         >>> br.TurnLeftAndDriveOnHeading(90, 40) #drive heading 90 for \
         40 cm
         """
+        #Checks for abort
+        if(self.hub.right_button.is_pressed()):
+            return()
+
         #Tests for direction and debug mode
         if heading > self.hub.motion_sensor.get_yaw_angle() and \
             self.debugMode:
@@ -285,5 +305,216 @@ class BaseRobot():
         #Drives on selected Heading
         self.GyroDriveOnHeading(distance, 0, maximumSpeed)
     
+    def WaitForButtonPress(self):
+        """
+        Waits until the left button is pressed.
+        """
+        self.hub.left_button.wait_until_pressed()
+        #Checks for abort after incase you want to rerun part of a mission
+        if(self.hub.right_button.is_pressed()):
+            return()
+
+    def LeftMedMotorRunForDegrees(self, degrees, speed=None):
+        """
+        Runs the motor for a given number of degrees.
+        
+        Parameters
+        -------------
+        degrees : The number of degrees the motor should run.
+        
+        Type : integer (positive or negative whole number, including 0)
+        
+        Values : any number
+        
+        Default : no default value
+
+        -----------------
+
+        speed : The motor's speed
+        
+        Type : integer (positive or negative whole number, including 0)
+        
+        Values : -100% to 100%
+        
+        Default : 50
+        
+        Errors
+        ----------
+        TypeError : degrees or speed is not an integer.
+        
+        RuntimeError : The motor has been disconnected from the Port.
+        """
+
+        #Checks for abort
+        if(self.hub.right_button.is_pressed()):
+            return()
+
+        self.leftMedMotor.run_for_degrees(degrees)
+
+    def RightMedMotorRunForDegrees(self, degrees, speed=50):
+        """
+        Runs the motor for a given number of degrees.
+        
+        Parameters
+        -------------
+        degrees : The number of degrees the motor should run.
+        
+        Type : integer (positive or negative whole number, including 0)
+        
+        Values : any number
+        
+        Default : no default value
+
+        -----------------
+
+        speed : The motor's speed
+        
+        Type : integer (positive or negative whole number, including 0)
+        
+        Values : -100% to 100%
+        
+        Default : 50
+        
+        Errors
+        ----------
+        TypeError : degrees or speed is not an integer.
+        
+        RuntimeError : The motor has been disconnected from the Port.
+        """
+
+        #Checks for abort
+        if(self.hub.right_button.is_pressed()):
+            return()
+
+        self.rightMedMotor.run_for_degrees(degrees, speed)
+
+    def LeftMedMotorRunForSeconds(self, seconds):
+        """
+        Runs the motor for a given number of degrees.
+        
+        Parameters
+        -------------
+        seconds : The number of seconds the motor should run.
+        
+        Type : integer (positive or negative whole number, including 0)
+        
+        Values : any number
+        
+        Default : no default value
+
+        Errors
+        ----------
+        TypeError : degrees or speed is not an integer.
+        
+        RuntimeError : The motor has been disconnected from the Port.
+        """
+
+        #Checks for abort
+        if(self.hub.right_button.is_pressed()):
+            return()
+
+        self.leftMedMotor.run_for_seconds(seconds)
+
+    def RightMedMotorRunForSeconds(self, seconds):
+        """
+        Runs the motor for a given number of degrees.
+        
+        Parameters
+        -------------
+        seconds : The number of seconds the motor should run.
+        
+        Type : integer (positive or negative whole number, including 0)
+        
+        Values : any number
+        
+        Default : no default value
+
+        Errors
+        ----------
+        TypeError : degrees or speed is not an integer.
+        
+        RuntimeError : The motor has been disconnected from the Port.
+        """
+
+        #Checks for abort
+        if(self.hub.right_button.is_pressed()):
+            return()
+
+        self.rightMedMotor.run_for_seconds(seconds)
+
+    def MoveTank(self, amount, unit='cm', left_speed=50, right_speed=50):
+        """
+        Moves the Driving Base using differential (tank) steering.
+        
+        The speed of each motor can be controlled independently for differential (tank) drive Driving Bases.
+        
+        When unit is 'cm' or 'in', the amount of the unit parameter is the horizontal distance that the Driving Base will travel before stopping. The relationship between motor rotations and distance traveled can be adjusted by calling set_motor_rotation().
+        
+        When 'unit' is 'rotations' or 'degrees', the amount parameter value specifies how much the motor axle will turn before stopping.
+        
+        When unit is 'seconds', the amount parameter value specifies the amount of time the motors will run before stopping.
+        
+        If left_speed or right_speed is outside of the allowed range, the value will be set to -100 or 100 depending whether the value is positive or negative.
+        
+        If one of the speed is negative (left_speed or right_speed), then the motor with that negative speed will run backward instead of forward. If the value of the amount parameter is negative, both motors will rotate backward instead of forward. If both the speed values (left_speed or right_speed) are negative and the value of the amount parameter is negative, then the both motors will rotate forward.
+        
+        The program will not continue until amount is reached.
+        
+        Parameters
+        -----------------
+        amount : The quantity to move in relation to the specified unit of measurement.
+        
+        Type : float (decimal number)
+        
+        Values : any value
+        
+        Default : no default value
+
+        -----------------
+
+        unit : The units of measurement of the amount parameter
+        
+        Type : string (text)
+        
+        Values : 'cm','in','rotations','degrees','seconds'
+        
+        Default : cm
+
+        -----------------
+
+        left_speed : The speed of the left motor
+        
+        Type : integer (positive or negative whole number, including 0)
+        
+        Values : -100 to 100
+        
+        Default : the speed set by set_default_speed()
+
+        -----------------
+
+        right_speed : The speed of the right motor
+        
+        Type : integer (positive or negative whole number, including 0)
+        
+        Values : -100 to 100
+        
+        Default : the speed set by set_default_speed()
+        
+        
+        Errors
+        --------------
+        TypeError : amount, left_speed or right_speed is not a number or unit is not a string.
+        
+        ValueError : unit is not one of the allowed values.
+        
+        RuntimeError : One or both of the Ports do not have a motor connected or the motors could not be paired.
+        """
+        
+        #Checks for abort
+        if(self.hub.right_button.is_pressed()):
+            return()
+
+        self.driveMotors.move_tank(amount, unit, left_speed, right_speed)
+
     def GetVersion(self, number):
         return self._version

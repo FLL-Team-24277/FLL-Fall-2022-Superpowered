@@ -20,26 +20,26 @@ br = base_robot.BaseRobot()
 ##    Zack     ##
 #################
 def mission1(): #violet
-    br.hub.motion_sensor.reset_yaw_angle()
+    
 
     #reseting arms to ensure they are in the perfect position
     br.rightMedMotor.set_stop_action('coast')
     br.rightMedMotor.run_for_seconds(1.2, -50)
     br.rightMedMotor.stop()
-    wait_for_seconds(.5)
-    br.rightMedMotor.run_for_degrees(197, 50)
+    br.wait_for_seconds(.5)
+    br.RightMedMotorRunForDegrees(197, 50)
 
     # Arms are reset... now wait for 3, 2, 1, lego!
-    br.hub.left_button.wait_until_pressed()
+    br.WaitForButtonPress()
     #driving to mission
-    br.driveMotors.move_tank(66, 'cm', 50, 48)
+    br.MoveTank(66, 'cm', 50, 48)
     # doing mission
-    br.rightMedMotor.run_for_degrees(270,100)
-    br.driveMotors.move_tank(1.5,'cm', 45,45)
-    br.rightMedMotor.run_for_seconds (2,-55)
-    wait_for_seconds(.5)
+    br.RightMedMotorRunForDegrees(270,100)
+    br.MoveTank(1.5,'cm', 45,45)
+    br.RightMedMotorRunForSeconds(2,-55)
+    br.wait_for_seconds(.5)
     #going back to base
-    br.driveMotors.move_tank(70,"cm",-100,-100)
+    br.MoveTank(70,"cm",-100,-100)
 
 
 
@@ -50,35 +50,35 @@ def mission1(): #violet
 ##     Sam      ##
 ##################
 def mission3(): #Red
-    br.hub.motion_sensor.reset_yaw_angle()
+    
 
     br.AccelGyroDriveForward(62)
 
     #release oil three times
     for i in range(3):
-        br.leftMedMotor.run_for_seconds(.6, -45)
-        br.leftMedMotor.run_for_seconds(.6, 45)
+        br.LeftMedMotorRunForSeconds(.6, -45)
+        br.LeftMedMotorRunForSeconds(.6, 45)
 
     #set up to grab truck
     br.GyroTurn(45)
-    br.driveMotors.move_tank(-37,'cm',70,70)
-    br.hub.motion_sensor.reset_yaw_angle()
+    br.MoveTank(-37,'cm',70,70)
+    
     br.GyroTurn(-45)
     #grab truck/wall
-    br.hub.motion_sensor.reset_yaw_angle()
-    br.driveMotors.move_tank(-50, 'cm',50,50)
-    br.hub.motion_sensor.reset_yaw_angle()
-    br.driveMotors.move_tank(41, 'cm',45,45)
-    br.hub.motion_sensor.reset_yaw_angle()
-    br.rightMedMotor.run_for_seconds(1, -10)
-    br.driveMotors.move_tank(-50, 'cm',50,50)
+    
+    br.MoveTank(-50, 'cm',50,50)
+    
+    br.MoveTank(41, 'cm',45,45)
+    
+    br.RightMedMotorRunForSeconds(1, -10)
+    br.MoveTank(-50, 'cm',50,50)
 
-    br.hub.left_button.wait_until_pressed()
+    br.WaitForButtonPress
 
     #east end drive
 
-    br.hub.motion_sensor.reset_yaw_angle()
-    br.driveMotors.move_tank(180, 'cm', 100, 100)
+    
+    br.MoveTank(180, 'cm', 100, 100)
 
 
 
@@ -88,26 +88,22 @@ def mission3(): #Red
 ##      Jonas      ##
 #####################
 def mission4():
-    br.hub.motion_sensor.reset_yaw_angle()
-    wait_for_seconds(.5)
     #Drive 70 centimeters
     br.AccelGyroDriveForward(70)
     br.GyroTurn(90)
     #Drive backwards 20 centimeters
-    br.driveMotors.move_tank(-20, 'cm', 50, 50)
-    br.hub.motion_sensor.reset_yaw_angle()
+    br.MoveTank(-20, 'cm', 50, 50)
     #Turn 6 degrees to the left
     br.GyroTurn(-6)
-    br.hub.motion_sensor.reset_yaw_angle()
     #Extend Attachment
-    br.leftMedMotor.run_for_rotations(2.7,100)
+    br.LeftMedMotorRunForSeconds(2.7,100)
     #Drive 35 centimeters
     br.AccelGyroDriveForward(35)
     #Retract Attachment
-    br.leftMedMotor.run_for_rotations(2.7,-100)
+    br.LeftMedMotorRunForSeconds(2.7,-100)
     #Drive back
-    br.driveMotors.move_tank(.7, 'rotations', -100, -50)
-    br.driveMotors.move_tank(5, 'rotations', -100, -100)
+    br.MoveTank(.7, 'rotations', -100, -50)
+    br.MoveTank(5, 'rotations', -100, -100)
 
 
 
@@ -119,28 +115,28 @@ def mission4():
 def mission5():
 
     # First put the truck in the ellipse
-    br.hub.motion_sensor.reset_yaw_angle()
-    wait_for_seconds(.5)
-    br.driveMotors.move_tank(78, "cm", 100, 100)
-    br.driveMotors.move_tank(-78, "cm", 100, 100)
+    
+    br.wait_for_seconds(.5)
+    br.MoveTank(78, "cm", 100, 100)
+    br.MoveTank(-78, "cm", 100, 100)
 
     # After returning to launch area, place the robot in the
     # launch spot by hand, and then press the left button
     # to continue
-    br.hub.left_button.wait_until_pressed()
-    br.driveMotors.move_tank(46, "cm", 50,50)
-    br.driveMotors.move_tank(-31, "cm", 50,50)
-    br.hub.motion_sensor.reset_yaw_angle()
-    wait_for_seconds(.5)
+    br.WaitForButtonPress()
+    br.MoveTank(46, "cm", 50,50)
+    br.MoveTank(-31, "cm", 50,50)
+    
+    br.wait_for_seconds(.5)
     br.GyroTurn(-40)
-    br.hub.motion_sensor.reset_yaw_angle()
-    br.driveMotors.move_tank(85, "cm", 50,50)
-    br.rightMedMotor.run_for_rotations(2,400) 
-    br.hub.motion_sensor.reset_yaw_angle()
-    br.rightMedMotor.run_for_rotations(-2,400)
-    br.driveMotors.move_tank(-27, "cm", 50,50)
-    br.hub.motion_sensor.reset_yaw_angle()
-    br.rightMedMotor.run_for_rotations(2,400)
+    
+    br.MoveTank(85, "cm", 50,50)
+    br.RightMedMotorRunForDegrees(720,400) 
+    
+    br.RightMedMotorRunForDegrees(-720,400)
+    br.MoveTank(-27, "cm", 50,50)
+    
+    br.RightMedMotorRunForDegrees(720,400)
     br.GyroTurn(80)
 
     # Windmill variables
@@ -149,22 +145,22 @@ def mission5():
     t = 1 #seconds
     dist = 4
 
-    br.driveMotors.move_tank(23, "cm", 50, 50)
-    br.hub.motion_sensor.reset_yaw_angle()
+    br.MoveTank(23, "cm", 50, 50)
+    
 
     # operate the windmill three times
     for i in range(3):
-        br.driveMotors.move_tank(amount=t, unit= "seconds", \
+        br.MoveTank(amount=t, unit= "seconds", \
             left_speed=rammingspeed, right_speed=rammingspeed)
-        wait_for_seconds(delay)
-        br.driveMotors.move_tank(dist, unit= "cm", left_speed = \
+        br.wait_for_seconds(delay)
+        br.MoveTank(dist, unit= "cm", left_speed = \
             -rammingspeed, right_speed=-rammingspeed)
-        wait_for_seconds(delay)
+        br.wait_for_seconds(delay)
 
-    br.driveMotors.move_tank(-10)
-    br.hub.motion_sensor.reset_yaw_angle()
+    br.MoveTank(-10)
+    
     br.GyroTurn(100)
-    br.hub.motion_sensor.reset_yaw_angle()
+    
     br.AccelGyroDriveForward(100)
 
 
@@ -174,11 +170,11 @@ def mission5():
 ##     Bea     ##
 #################
 def mission2(): #Yellow
-    br.hub.motion_sensor.reset_yaw_angle()
+    
     br.AccelGyroDriveForward (distance=50)
-    br.driveMotors.move_tank(-10, 'cm', 50, 50)
-    br.leftMedMotor.run_for_seconds(1.5)
-    br.driveMotors.move_tank(-35, 'cm', 50, 50)
+    br.MoveTank(-10, 'cm', 50, 50)
+    br.LeftMedMotorRunForSeconds(1.5)
+    br.MoveTank(-35, 'cm', 50, 50)
 
 
 
@@ -220,25 +216,25 @@ while True:
     # loop back into the inner loop and do it all again
     if br.colorSensor.get_color() == "violet":
         mission1() # First run; Power Plant
-        br.hub.motion_sensor.reset_yaw_angle()
-        wait_for_seconds(.5)
+        
+        br.wait_for_seconds(.5)
     
     if br.colorSensor.get_color() == "yellow":
         mission2() # Toy Factory
-        br.hub.motion_sensor.reset_yaw_angle()
-        wait_for_seconds(.5)
+        
+        br.wait_for_seconds(.5)
 
     if br.colorSensor.get_color() == "red":
         mission3() # Oil Refinery
-        br.hub.motion_sensor.reset_yaw_angle()
-        wait_for_seconds(.5)
+        
+        br.wait_for_seconds(.5)
 
     if br.colorSensor.get_color() == "green":
         mission4() # Solar farm
-        br.hub.motion_sensor.reset_yaw_angle()
-        wait_for_seconds(.5)
+        
+        br.wait_for_seconds(.5)
 
     if br.colorSensor.get_color() == "blue":
         mission5() # Pick up north energy units
-        br.hub.motion_sensor.reset_yaw_angle()
-        wait_for_seconds(.5)
+        
+        br.wait_for_seconds(.5)
