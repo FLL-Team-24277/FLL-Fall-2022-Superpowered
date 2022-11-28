@@ -316,7 +316,7 @@ class BaseRobot():
         if(self.hub.right_button.is_pressed()):
             return()
 
-    def WaitForSeconds(self, seconds)
+    def WaitForSeconds(self, seconds):
         wait_for_seconds(seconds)
 
 
