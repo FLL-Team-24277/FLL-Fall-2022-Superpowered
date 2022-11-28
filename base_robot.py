@@ -16,6 +16,7 @@ class BaseRobot():
     motors for moving attachments, and all of the base methods available \
     for Spike Prime sensors and motors. It also includes some custom \
     methods for moving the robot. Enjoy!
+    I am Zack!
 
     Example:
 
