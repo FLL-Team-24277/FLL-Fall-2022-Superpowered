@@ -316,6 +316,10 @@ class BaseRobot():
         if(self.hub.right_button.is_pressed()):
             return()
 
+    def WaitForSeconds(self, seconds)
+        wait_for_seconds(seconds)
+
+
     def LeftMedMotorRunForDegrees(self, degrees, speed=None):
         """
         Runs the motor for a given number of degrees.
