@@ -26,7 +26,7 @@ def mission1(): #violet
     br.rightMedMotor.set_stop_action('coast')
     br.rightMedMotor.run_for_seconds(1.2, -50)
     br.rightMedMotor.stop()
-    br.wait_for_seconds(.5)
+    br.Wait_for_seconds(.5)
     br.RightMedMotorRunForDegrees(197, 50)
 
     # Arms are reset... now wait for 3, 2, 1, lego!
@@ -37,7 +37,7 @@ def mission1(): #violet
     br.RightMedMotorRunForDegrees(270,100)
     br.MoveTank(1.5,'cm', 45,45)
     br.RightMedMotorRunForSeconds(2,-55)
-    br.wait_for_seconds(.5)
+    br.Wait_for_seconds(.5)
     #going back to base
     br.MoveTank(70,"cm",-100,-100)
 
@@ -116,7 +116,7 @@ def mission5():
 
     # First put the truck in the ellipse
     
-    br.wait_for_seconds(.5)
+    br.Wait_for_seconds(.5)
     br.MoveTank(78, "cm", 100, 100)
     br.MoveTank(-78, "cm", 100, 100)
 
