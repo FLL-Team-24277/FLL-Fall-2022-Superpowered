@@ -395,7 +395,7 @@ class BaseRobot():
 
         self.rightMedMotor.run_for_degrees(degrees, speed)
 
-    def LeftMedMotorRunForSeconds(self, seconds):
+    def LeftMedMotorRunForSeconds(self, seconds, speed):
         """
         Runs the motor for a given number of degrees.
         
@@ -420,9 +420,9 @@ class BaseRobot():
         if(self.hub.right_button.is_pressed()):
             return()
 
-        self.leftMedMotor.run_for_seconds(seconds)
+        self.leftMedMotor.run_for_seconds(seconds, speed)
 
-    def RightMedMotorRunForSeconds(self, seconds):
+    def RightMedMotorRunForSeconds(self, seconds, speed):
         """
         Runs the motor for a given number of degrees.
         
@@ -447,7 +447,7 @@ class BaseRobot():
         if(self.hub.right_button.is_pressed()):
             return()
 
-        self.rightMedMotor.run_for_seconds(seconds)
+        self.rightMedMotor.run_for_seconds(seconds, speed)
 
     def MoveTank(self, amount, unit='cm', left_speed=50, right_speed=50):
         """
