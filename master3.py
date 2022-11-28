@@ -26,20 +26,20 @@ def mission1(): #violet
     br.rightMedMotor.set_stop_action('coast')
     br.rightMedMotor.run_for_seconds(1.2, -50)
     br.rightMedMotor.stop()
-    br.Wait_for_seconds(.5)
+    br.WaitForSeconds(.5)
     br.RightMedMotorRunForDegrees(197, 50)
 
     # Arms are reset... now wait for 3, 2, 1, lego!
     br.WaitForButtonPress()
     #driving to mission
-    br.MoveTank(66, 'cm', 50, 48)
+    br.MoveTank(2.5, "seconds",75, 70)
     # doing mission
     br.RightMedMotorRunForDegrees(270,100)
-    br.MoveTank(1.5,'cm', 45,45)
+    # br.MoveTank(1.5,'cm', 45,45)
     br.RightMedMotorRunForSeconds(2,-55)
-    br.Wait_for_seconds(.5)
+    # br.WaitForSeconds(.5)
     #going back to base
-    br.MoveTank(70,"cm",-100,-100)
+    # br.MoveTank(70,"cm",-100,-100)
 
 
 
@@ -116,7 +116,7 @@ def mission5():
 
     # First put the truck in the ellipse
     
-    br.Wait_for_seconds(.5)
+    br.WaitForSeconds(.5)
     br.MoveTank(78, "cm", 100, 100)
     br.MoveTank(-78, "cm", 100, 100)
 
@@ -127,7 +127,7 @@ def mission5():
     br.MoveTank(46, "cm", 50,50)
     br.MoveTank(-31, "cm", 50,50)
     
-    br.wait_for_seconds(.5)
+    br.WaitForSeconds(.5)
     br.GyroTurn(-40)
     
     br.MoveTank(85, "cm", 50,50)
@@ -152,10 +152,10 @@ def mission5():
     for i in range(3):
         br.MoveTank(amount=t, unit= "seconds", \
             left_speed=rammingspeed, right_speed=rammingspeed)
-        br.wait_for_seconds(delay)
+        br.WaitForSeconds(delay)
         br.MoveTank(dist, unit= "cm", left_speed = \
             -rammingspeed, right_speed=-rammingspeed)
-        br.wait_for_seconds(delay)
+        br.WaitForSeconds(delay)
 
     br.MoveTank(-10)
     
@@ -217,24 +217,24 @@ while True:
     if br.colorSensor.get_color() == "violet":
         mission1() # First run; Power Plant
         
-        br.wait_for_seconds(.5)
+        br.WaitForSeconds(.5)
     
     if br.colorSensor.get_color() == "yellow":
         mission2() # Toy Factory
         
-        br.wait_for_seconds(.5)
+        br.WaitForSeconds(.5)
 
     if br.colorSensor.get_color() == "red":
         mission3() # Oil Refinery
         
-        br.wait_for_seconds(.5)
+        br.WaitForSeconds(.5)
 
     if br.colorSensor.get_color() == "green":
         mission4() # Solar farm
         
-        br.wait_for_seconds(.5)
+        br.WaitForSeconds(.5)
 
     if br.colorSensor.get_color() == "blue":
         mission5() # Pick up north energy units
         
-        br.wait_for_seconds(.5)
+        br.WaitForSeconds(.5)
