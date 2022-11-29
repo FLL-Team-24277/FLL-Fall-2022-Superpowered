@@ -128,7 +128,7 @@ def mission5():
     br.MoveTank(-31, "cm", 50,50)
     
     br.WaitForSeconds(.5)
-    br.GyroTurn(-40)
+    br.GyroTurn(-39)
     
     br.MoveTank(85, "cm", 50,50)
     br.RightMedMotorRunForDegrees(720,400) 
@@ -161,7 +161,7 @@ def mission5():
     
     br.GyroTurn(100)
     
-    br.AccelGyroDriveForward(100)
+    br.MoveTank(78,"cm",100,100)
 
 
 #################
