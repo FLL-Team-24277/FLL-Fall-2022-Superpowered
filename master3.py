@@ -94,13 +94,13 @@ def mission4():
     #Drive backwards 20 centimeters
     br.MoveTank(-20, 'cm', 50, 50)
     #Turn 6 degrees to the left
-    br.GyroTurn(-6)
+    br.GyroTurn(-9)
     #Extend Attachment
-    br.LeftMedMotorRunForSeconds(2.7,100)
+    br.LeftMedMotorRunForSeconds(.9,100)
     #Drive 35 centimeters
     br.AccelGyroDriveForward(35)
     #Retract Attachment
-    br.LeftMedMotorRunForSeconds(2.7,-100)
+    br.LeftMedMotorRunForSeconds(.9,-100)
     #Drive back
     br.MoveTank(.7, 'rotations', -100, -50)
     br.MoveTank(5, 'rotations', -100, -100)
