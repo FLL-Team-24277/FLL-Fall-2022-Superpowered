@@ -19,10 +19,11 @@ br = base_robot.BaseRobot()
 ##    Run 1    ##
 ##    Zack     ##
 #################
-def mission1(): #violet
-    
 
-    #reseting arms to ensure they are in the perfect position
+
+def mission1():  # violet
+
+    # reseting arms to ensure they are in the perfect position
     br.rightMedMotor.set_stop_action('coast')
     br.rightMedMotor.run_for_seconds(1.2, -50)
     br.rightMedMotor.stop()
@@ -31,17 +32,15 @@ def mission1(): #violet
 
     # Arms are reset... now wait for 3, 2, 1, lego!
     br.WaitForButtonPress()
-    #driving to mission
-    br.MoveTank(2.5, "seconds",75, 70)
+    # driving to mission
+    br.MoveTank(2.5, "seconds", 75, 70)
     # doing mission
-    br.RightMedMotorRunForDegrees(270,100)
+    br.RightMedMotorRunForDegrees(270, 100)
     # br.MoveTank(1.5,'cm', 45,45)
-    br.RightMedMotorRunForSeconds(2,-55)
+    br.RightMedMotorRunForSeconds(2, -55)
     # br.WaitForSeconds(.5)
-    #going back to base
+    # going back to base
     # br.MoveTank(70,"cm",-100,-100)
-
-
 
 
 ##################
@@ -49,37 +48,34 @@ def mission1(): #violet
 ##    Run 3     ##
 ##     Sam      ##
 ##################
-def mission3(): #Red
-    
+def mission3():  # Red
 
     br.AccelGyroDriveForward(62)
 
-    #release oil three times
+    # release oil three times
     for i in range(3):
         br.LeftMedMotorRunForSeconds(.6, -45)
         br.LeftMedMotorRunForSeconds(.6, 45)
 
-    #set up to grab truck
+    # set up to grab truck
     br.GyroTurn(45)
-    br.MoveTank(-37,'cm',70,70)
-    
+    br.MoveTank(-37, 'cm', 70, 70)
+
     br.GyroTurn(-45)
-    #grab truck/wall
-    
-    br.MoveTank(-50, 'cm',50,50)
-    
-    br.MoveTank(41, 'cm',45,45)
-    
+    # grab truck/wall
+
+    br.MoveTank(-50, 'cm', 50, 50)
+
+    br.MoveTank(41, 'cm', 45, 45)
+
     br.RightMedMotorRunForSeconds(1, -10)
-    br.MoveTank(-50, 'cm',50,50)
+    br.MoveTank(-50, 'cm', 50, 50)
 
     br.WaitForButtonPress()
 
-    #east end drive
+    # east end drive
 
-    
     br.MoveTank(180, 'cm', 100, 100)
-
 
 
 #####################
@@ -88,23 +84,22 @@ def mission3(): #Red
 ##      Jonas      ##
 #####################
 def mission4():
-    #Drive 70 centimeters
+    # Drive 70 centimeters
     br.AccelGyroDriveForward(70)
     br.GyroTurn(90)
-    #Drive backwards 20 centimeters
+    # Drive backwards 20 centimeters
     br.MoveTank(-20, 'cm', 50, 50)
-    #Turn 6 degrees to the left
+    # Turn 6 degrees to the left
     br.GyroTurn(-6)
-    #Extend Attachment
-    br.LeftMedMotorRunForSeconds(2.7,100)
-    #Drive 35 centimeters
+    # Extend Attachment
+    br.LeftMedMotorRunForSeconds(2.7, 100)
+    # Drive 35 centimeters
     br.AccelGyroDriveForward(35)
-    #Retract Attachment
-    br.LeftMedMotorRunForSeconds(2.7,-100)
-    #Drive back
+    # Retract Attachment
+    br.LeftMedMotorRunForSeconds(2.7, -100)
+    # Drive back
     br.MoveTank(.7, 'rotations', -100, -50)
     br.MoveTank(5, 'rotations', -100, -100)
-
 
 
 #####################
@@ -124,44 +119,43 @@ def mission5():
     # launch spot by hand, and then press the left button
     # to continue
     br.WaitForButtonPress()
-    br.MoveTank(46, "cm", 50,50)
-    br.MoveTank(-31, "cm", 50,50)
-    
+    br.MoveTank(46, "cm", 50, 50)
+    br.MoveTank(-31, "cm", 50, 50)
+
     br.WaitForSeconds(.5)
     br.GyroTurn(-39)
-    
-    br.MoveTank(85, "cm", 50,50)
-    br.RightMedMotorRunForDegrees(720,400) 
-    
-    br.RightMedMotorRunForDegrees(-720,400)
-    br.MoveTank(-27, "cm", 50,50)
-    
-    br.RightMedMotorRunForDegrees(720,400)
+
+    br.MoveTank(85, "cm", 50, 50)
+    br.RightMedMotorRunForDegrees(720, 400)
+
+    br.RightMedMotorRunForDegrees(-720, 400)
+    br.MoveTank(-27, "cm", 50, 50)
+
+    br.RightMedMotorRunForDegrees(720, 400)
     br.GyroTurn(80)
 
     # Windmill variables
     delay = 0.5
-    rammingspeed=30
-    t = 1 #seconds
+    rammingspeed = 30
+    t = 1  # seconds
     dist = 4
 
     br.MoveTank(23, "cm", 50, 50)
-    
 
     # operate the windmill three times
     for i in range(3):
-        br.MoveTank(amount=t, unit= "seconds", \
-            left_speed=rammingspeed, right_speed=rammingspeed)
+        br.MoveTank(amount=t, unit="seconds",
+                    left_speed=rammingspeed, right_speed=rammingspeed)
         br.WaitForSeconds(delay)
-        br.MoveTank(dist, unit= "cm", left_speed = \
-            -rammingspeed, right_speed=-rammingspeed)
+        br.MoveTank(dist, unit="cm", left_speed=-
+                    rammingspeed, right_speed=-rammingspeed)
         br.WaitForSeconds(delay)
 
     br.MoveTank(-10)
-    
+
     br.GyroTurn(100)
-    
-    br.MoveTank(78,"cm",100,100)
+
+    br.MoveTank(78, "cm", 100, 100)
 
 
 #################
@@ -169,14 +163,12 @@ def mission5():
 ##    Run 6    ##
 ##     Bea     ##
 #################
-def mission2(): #Yellow
-    
-    br.AccelGyroDriveForward (distance=50)
+def mission2():  # Yellow
+
+    br.AccelGyroDriveForward(distance=50)
     br.MoveTank(-10, 'cm', 50, 50)
     br.LeftMedMotorRunForSeconds(1.5)
     br.MoveTank(-35, 'cm', 50, 50)
-
-
 
 
 ##########################################
@@ -187,8 +179,8 @@ def mission2(): #Yellow
 
 
 # Run the missions depending on what color is seen here
-validColorList = ['azure','blue','cyan','green','orange','pink','red',\
-    'violet','yellow','white']
+validColorList = ['azure', 'blue', 'cyan', 'green', 'orange', 'pink', 'red',
+                  'violet', 'yellow', 'white']
 while True:
     while True:
         # Inner loop checks to see what color attachment is installed
@@ -203,38 +195,38 @@ while True:
         else:
             br.hub.light_matrix.show_image("CONFUSED")
             br.hub.status_light.off()
-        
+
         if br.hub.left_button.is_pressed():
             break
 
         if br.hub.right_button.is_pressed():
             break
-    
+
     # Outer loop. When we get here, it's because we pressed a button
     # and broke out of the inner loop. Now execute the mission for the
     # color of the attachment. When the mission is done executing,
     # loop back into the inner loop and do it all again
     if br.colorSensor.get_color() == "violet":
-        mission1() # First run; Power Plant
-        
+        mission1()  # First run; Power Plant
+
         br.WaitForSeconds(.5)
-    
+
     if br.colorSensor.get_color() == "yellow":
-        mission2() # Toy Factory
-        
+        mission2()  # Toy Factory
+
         br.WaitForSeconds(.5)
 
     if br.colorSensor.get_color() == "red":
-        mission3() # Oil Refinery
-        
+        mission3()  # Oil Refinery
+
         br.WaitForSeconds(.5)
 
     if br.colorSensor.get_color() == "green":
-        mission4() # Solar farm
-        
+        mission4()  # Solar farm
+
         br.WaitForSeconds(.5)
 
     if br.colorSensor.get_color() == "blue":
-        mission5() # Pick up north energy units
-        
+        mission5()  # Pick up north energy units
+
         br.WaitForSeconds(.5)
