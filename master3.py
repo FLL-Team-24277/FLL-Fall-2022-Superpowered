@@ -176,8 +176,21 @@ def mission2(): #Yellow
     br.LeftMedMotorRunForSeconds(1.5)
     br.MoveTank(-35, 'cm', 50, 50)
 
-
-
+#################
+##  BOX THING  ##
+##    Run 3    ##
+##   Jeremie   ##
+#################
+def mission6():
+    br.AccelGyroDriveForward(53)
+    br.GyroTurn(-26)
+    br.MoveTank(25, 'cm', 50, 50)
+    br.WaitForSeconds(.5)
+    br.driveMotors.start_tank(-35, -35)
+    br.WaitForSeconds(.5)
+    br.driveMotors.start_tank(-80, -100)
+    br.WaitForSeconds(3)
+    br.driveMotors.stop()
 
 ##########################################
 ##########################################
@@ -238,3 +251,10 @@ while True:
         mission5() # Pick up north energy units
         
         br.WaitForSeconds(.5)
+        
+    if br.colorSensor.get_color() == "azure":
+        mission6() # Box thing
+        
+        br.WaitForSeconds(.5)
+        
+        
