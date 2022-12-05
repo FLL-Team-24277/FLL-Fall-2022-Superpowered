@@ -51,6 +51,7 @@ def mission1(): #violet
 ##################
 def mission3(): #Red
     
+    br.MoveTank(.2, 'seconds', -100, -100)
 
     br.AccelGyroDriveForward(62)
 
@@ -64,17 +65,24 @@ def mission3(): #Red
     br.MoveTank(-37,'cm',70,70)
     
     br.GyroTurn(-45)
+    
     #grab truck/wall
     
-    br.MoveTank(-50, 'cm',50,50)
+    br.MoveTank(11, 'cm', 40,40)
     
-    br.MoveTank(41, 'cm',45,45)
-    
-    br.RightMedMotorRunForSeconds(1, -10)
-    br.MoveTank(-50, 'cm',50,50)
+    #Wiggle Wiggle
+    br.MoveTank(2, 'cm', 40,40)
+    br.MoveTank(-2, 'cm', 40,40)
+    br.MoveTank(2, 'cm', 40,40)
+    br.MoveTank(-2, 'cm', 40,40)
 
+
+
+    br.MoveTank(-2, 'cm', 10,10)
+    br.MoveTank(-48, 'cm', 50,50)
+    
     br.WaitForButtonPress()
-
+    
     #east end drive
 
     
