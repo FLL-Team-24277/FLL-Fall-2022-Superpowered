@@ -22,24 +22,12 @@ br = base_robot.BaseRobot()
 def mission1(): #violet
     
 
-    #reseting arms to ensure they are in the perfect position
-    br.rightMedMotor.set_stop_action('coast')
-    br.rightMedMotor.run_for_seconds(1.2, -50)
-    br.rightMedMotor.stop()
+    br.MoveTank(70, 'cm', 55, 50)
+    br.RightMedMotorRunForDegrees(360, 40)
+    br.WaitForSeconds(1)
+    br.RightMedMotorRunForDegrees(-360,20)
     br.WaitForSeconds(.5)
-    br.RightMedMotorRunForDegrees(197, 50)
-
-    # Arms are reset... now wait for 3, 2, 1, lego!
-    br.WaitForButtonPress()
-    #driving to mission
-    br.MoveTank(2.5, "seconds",75, 70)
-    # doing mission
-    br.RightMedMotorRunForDegrees(270,100)
-    # br.MoveTank(1.5,'cm', 45,45)
-    br.RightMedMotorRunForSeconds(2,-55)
-    # br.WaitForSeconds(.5)
-    #going back to base
-    # br.MoveTank(70,"cm",-100,-100)
+    br.MoveTank(-70, 'cm', 100, 100)
 
 
 
@@ -53,7 +41,7 @@ def mission3(): #Red
     
     br.MoveTank(.2, 'seconds', -100, -100)
 
-    br.AccelGyroDriveForward(62)
+    br.AccelGyroDriveForward(64)
 
     #release oil three times
     for i in range(3):
@@ -71,10 +59,10 @@ def mission3(): #Red
     br.MoveTank(11, 'cm', 40,40)
     
     #Wiggle Wiggle
-    br.MoveTank(2, 'cm', 40,40)
-    br.MoveTank(-2, 'cm', 40,40)
-    br.MoveTank(2, 'cm', 40,40)
-    br.MoveTank(-2, 'cm', 40,40)
+    br.MoveTank(2, 'cm', -100,100)
+    br.MoveTank(-2, 'cm', -100,100)
+    br.MoveTank(2, 'cm', -100,100)
+    br.MoveTank(-2, 'cm', -100,100)
 
 
 
@@ -180,9 +168,8 @@ def mission5():
 def mission2(): #Yellow
     
     br.AccelGyroDriveForward (distance=50)
-    br.MoveTank(-10, 'cm', 50, 50)
     br.LeftMedMotorRunForSeconds(1.5)
-    br.MoveTank(-35, 'cm', 50, 50)
+    br.MoveTank(-55, 'cm', 50, 50)
 
 #################
 ##  BOX THING  ##
@@ -218,6 +205,7 @@ while True:
         # break out of the loop and execute the mission associated
         # with that color
         curColor = br.colorSensor.get_color()
+        # print (curColor)
         if curColor in validColorList:
             br.hub.light_matrix.show_image("YES")
             br.hub.status_light.on(curColor)
@@ -260,7 +248,7 @@ while True:
         
         br.WaitForSeconds(.5)
         
-    if br.colorSensor.get_color() == "azure":
+    if br.colorSensor.get_color() == "cyan":
         mission6() # Box thing
         
         br.WaitForSeconds(.5)
