@@ -88,19 +88,19 @@ def mission3(): #Red
 ##      Jonas      ##
 #####################
 def mission4():
-    #Drive 70 centimeters
-    br.AccelGyroDriveForward(70)
+     # Drive 70 centimeters
+    br.AccelGyroDriveForward(73)
     br.GyroTurn(90)
-    #Drive backwards 20 centimeters
+    # Drive backwards 20 centimeters
     br.MoveTank(-20, 'cm', 50, 50)
-    #Turn 6 degrees to the left
-    br.GyroTurn(-9)
+    # Turn 10 degrees to the right
+    br.GyroTurn(-10)
     #Extend Attachment
-    br.LeftMedMotorRunForSeconds(.9,100)
+    br.LeftMedMotorRunForSeconds(1.2,100)
     #Drive 35 centimeters
     br.AccelGyroDriveForward(35)
     #Retract Attachment
-    br.LeftMedMotorRunForSeconds(.9,-100)
+    br.LeftMedMotorRunForSeconds(1.2,-100)
     #Drive back
     br.MoveTank(.7, 'rotations', -100, -50)
     br.MoveTank(5, 'rotations', -100, -100)
