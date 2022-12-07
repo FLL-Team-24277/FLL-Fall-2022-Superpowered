@@ -215,9 +215,6 @@ while True:
         
         if br.hub.left_button.is_pressed():
             break
-
-        if br.hub.right_button.is_pressed():
-            break
     
     # Outer loop. When we get here, it's because we pressed a button
     # and broke out of the inner loop. Now execute the mission for the
