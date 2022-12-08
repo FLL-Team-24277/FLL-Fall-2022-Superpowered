@@ -23,9 +23,11 @@ def mission1(): #violet
     
 
     br.MoveTank(70, 'cm', 55, 50)
-    br.RightMedMotorRunForDegrees(360, 40)
-    br.WaitForSeconds(1)
-    br.RightMedMotorRunForDegrees(-360,20)
+    br.RightMedMotorRunForSeconds(1, 50)
+    # br.RightMedMotorRunForDegrees(400, 50)
+    br.WaitForSeconds(.5)
+    br.RightMedMotorRunForSeconds(1.5, -50)
+    # br.RightMedMotorRunForDegrees(-420,40)
     br.WaitForSeconds(.5)
     br.MoveTank(-70, 'cm', 100, 100)
 
@@ -181,7 +183,7 @@ def mission5():
 def mission2(): #Yellow
     
     br.AccelGyroDriveForward (distance=50)
-    br.LeftMedMotorRunForSeconds(1.5)
+    br.LeftMedMotorRunForSeconds(1.5, 50)
     br.MoveTank(-55, 'cm', 50, 50)
 
 #################
