@@ -76,7 +76,7 @@ def mission3(): #Red
     #east end drive
 
     
-    br.MoveTank(180, 'cm', 100, 100)
+    br.AccelGyroDriveForward(150, 100)
 
 
 
@@ -188,12 +188,11 @@ def mission2(): #Yellow
 
 #################
 ##  BOX THING  ##
-##    Run 3    ##
 ##   Jeremie   ##
 #################
 def mission6():
     br.AccelGyroDriveForward(53)
-    br.GyroTurn(-26)
+    br.GyroTurn(-24)
     br.MoveTank(25, 'cm', 50, 50)
     br.WaitForSeconds(.5)
     br.driveMotors.start_tank(-35, -35)
@@ -238,31 +237,26 @@ while True:
     if br.colorSensor.get_color() == "violet":
         mission1() # First run; Power Plant
         
-        br.WaitForSeconds(.5)
-    
+        
     if br.colorSensor.get_color() == "yellow":
         mission2() # Toy Factory
         
-        br.WaitForSeconds(.5)
-
+       
     if br.colorSensor.get_color() == "red":
         mission3() # Oil Refinery
         
-        br.WaitForSeconds(.5)
+       
 
     if br.colorSensor.get_color() == "green":
         mission4() # Solar farm
         
-        br.WaitForSeconds(.5)
 
     if br.colorSensor.get_color() == "blue":
         mission5() # Pick up north energy units
         
-        br.WaitForSeconds(.5)
         
     if br.colorSensor.get_color() == "cyan":
         mission6() # Box thing
         
-        br.WaitForSeconds(.5)
         
         
