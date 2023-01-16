@@ -208,6 +208,7 @@ def mission6():
 ##########################################
 ##########################################
 
+mission3()
 
 # Run the missions depending on what color is seen here
 validColorList = ['azure','blue','cyan','green','orange','pink','red',\

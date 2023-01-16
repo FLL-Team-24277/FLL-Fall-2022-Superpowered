@@ -69,6 +69,11 @@ class BaseRobot():
         default: No default value
         """
 
+        # open output file for logging
+        f=open("gyroturnlog.txt", "a")
+        if (self.debugMode == True):
+            f.write("Turning to heading " + str(angle))
+
         # Checks for abort
         if (self.hub.right_button.is_pressed()):
             return ()
@@ -86,12 +91,17 @@ class BaseRobot():
             while (MotionSensor().get_yaw_angle() < angle):
                 # If it it is positive it starts turning right.
                 self.driveMotors.start_tank(gyroTurnSpeed, -gyroTurnSpeed)
+                if (self.debugMode == True):
+                    f.write("Current heading " + str(MotionSensor().get_yaw_angle()))
         else:
             while (MotionSensor().get_yaw_angle() > angle):
                 # If it it is not positive it starts turning left.
                 self.driveMotors.start_tank(-gyroTurnSpeed, gyroTurnSpeed)
+                if (self.debugMode == True):
+                    f.write("Current heading " + str(MotionSensor().get_yaw_angle()))
         # Stops when it is it has reached the desired angle
         self.driveMotors.stop()
+        f.close()
 
     def GyroDriveOnHeading(self, distance, heading, maximumSpeed=50):
         """
