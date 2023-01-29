@@ -1,11 +1,12 @@
 # LEGO type:standard slot:15 autostart
 
 import sys
+import utime
 from spike import (MotionSensor, MotorPair)
 from spike.control import wait_for_seconds
 
 f = open("log2.txt", "a")
-debugMode = False
+debugMode = True
 _leftDriveMotorPort = 'E'
 _rightDriveMotorPort = 'A'
 driveMotors = MotorPair(_leftDriveMotorPort,
@@ -14,7 +15,9 @@ driveMotors = MotorPair(_leftDriveMotorPort,
 def Log(topic, msg):
     # Example usage
     # Log("GyroTurn", "Starting a gyro turn")
-    f.write(topic + ": " + msg)
+        #t = '%4d-%02d-%02d %02d:%02d:%02d' % utime.localtime() [:6]
+        t = utime.ticks_ms()
+        f.write(str(t) + " [" + topic + "] " + msg)
     #f.close()
 
 def GyroTurn(angle):
@@ -52,22 +55,28 @@ def GyroTurn(angle):
     # Sets turn speed
     gyroTurnSpeed = 10
     # Tests if the angle is positive.
+    yawAngle = MotionSensor().get_yaw_angle()
     if (angle > 0):
-        while (MotionSensor().get_yaw_angle() < angle):
+        driveMotors.start_tank(gyroTurnSpeed, -gyroTurnSpeed)
+        while (yawAngle < angle):
             # If it it is positive it starts turning right.
-            driveMotors.start_tank(gyroTurnSpeed, -gyroTurnSpeed)
+            yawAngle = MotionSensor().get_yaw_angle()
             if (debugMode == True):
-                Log("Gyroturn", "Current heading " + str(MotionSensor().get_yaw_angle()) + "\n")
+                Log("Gyroturn", "Current heading " + str(yawAngle) + "\n")
     else:
-        while (MotionSensor().get_yaw_angle() > angle):
-            # If it it is not positive it starts turning left.
-            driveMotors.start_tank(-gyroTurnSpeed, gyroTurnSpeed)
+        driveMotors.start_tank(-gyroTurnSpeed, gyroTurnSpeed)
+        while (yawAngle > angle):
+            # If it it is positive it starts turning right.
+            yawAngle = MotionSensor().get_yaw_angle()
             if (debugMode == True):
-                Log("Gyroturn", "Current heading " + str(MotionSensor().get_yaw_angle()) + "\n")
+                Log("Gyroturn", "Current heading " + str(yawAngle) + "\n")
+
     # Stops when it is it has reached the desired angle
+    if (debugMode == True):
+        Log("Gyroturn", "Calling stop(). Current heading " + str(MotionSensor().get_yaw_angle()) + "\n")
     driveMotors.stop()
     if (debugMode == True):
-        Log("Gyroturn", "Stopping the turn. Current heading " + str(MotionSensor().get_yaw_angle()) + "\n")
+        Log("Gyroturn", "stop() has been called. Current heading " + str(MotionSensor().get_yaw_angle()) + "\n")
     wait_for_seconds(0.5)
     if (debugMode == True):
         Log("Gyroturn", "Final heading " + str(MotionSensor().get_yaw_angle()) + "\n")
