@@ -16,13 +16,13 @@ driveMotors = MotorPair(_leftDriveMotorPort,
 def Log(topic, msg):
     # Example usage
     # Log("GyroTurn", "Starting a gyro turn")
-    #t = '%4d-%02d-%02d %02d:%02d:%02d' % utime.localtime() [:6]
     t = str(utime.ticks_ms())
     entry = t + " [" + topic + "] " + msg
     logList.append(entry)
+
+    # garbage collect every 25th append
     if (len(logList) % 25 == 0):
         gc.collect()
-    # print(entry)
 
 def WriteLog():
     with open("log2.txt", "a") as f:
@@ -78,7 +78,6 @@ def GyroTurn(angle):
             if (debugMode == True):
                 Log("Gyroturn", "(" + str(loops) + ") Current heading " + str(yawAngle))
             loops += 1
-            print(str(loops))
     else:
         driveMotors.start_tank(-gyroTurnSpeed, gyroTurnSpeed)
         while (yawAngle > angle and loops < max_loops):
@@ -87,7 +86,6 @@ def GyroTurn(angle):
             if (debugMode == True):
                 Log("Gyroturn", "(" + str(loops) + ") Current heading " + str(yawAngle))
             loops += 1
-            print(str(loops))
 
     # did we max out on loops?
     if (loops == max_loops):
@@ -103,21 +101,6 @@ def GyroTurn(angle):
         Log("Gyroturn", "Final heading " + str(MotionSensor().get_yaw_angle()))
 
     WriteLog()
-
-# Now, the test program
-# test = []
-# for i in range(0, 800):
-#     t = str(utime.ticks_ms())
-#     # entry = t
-#     entry = "%d  [Gyroturn] Current heading 35" % utime.ticks_ms()
-#     test.append(entry)
-#     if (i % 50 == 0) :
-#         gc.collect()
-    
-
-# for item in test:
-#     # write each item on a new line
-#     print(item)
 
 GyroTurn(-45)
 wait_for_seconds(1)
