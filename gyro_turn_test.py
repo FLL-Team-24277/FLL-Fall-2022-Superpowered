@@ -100,7 +100,8 @@ def GyroTurn(angle):
     if (debugMode == True):
         Log("Gyroturn", "Final heading " + str(MotionSensor().get_yaw_angle()))
 
-    WriteLog()
+    if (debugMode == True):
+        WriteLog()
 
 GyroTurn(-45)
 wait_for_seconds(1)
