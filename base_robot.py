@@ -1,5 +1,6 @@
 import math
 import sys
+import utime
 
 from spike import (App, Button, ColorSensor, DistanceSensor, ForceSensor,
                    LightMatrix, MotionSensor, Motor, MotorPair, PrimeHub,
@@ -46,6 +47,15 @@ class BaseRobot():
 
         # Reset the yaw angle when the baseRobot is declared
         self.hub.motion_sensor.reset_yaw_angle()
+        self.f = open("log.txt", "a")
+
+    def Log(self, topic, msg):
+        # Example usage
+        # self.Log("GyroTurn", "Starting a gyro turn")
+        t = '%4d-%02d-%02d %02d:%02d:%02d' % utime.localtime() [:6]
+        self.f.write(t + ": " + topic + ": " + msg)
+        #f.close()
+
 
     def GyroTurn(self, angle):
         """
@@ -69,6 +79,10 @@ class BaseRobot():
         default: No default value
         """
 
+        # open output file for logging
+        if (self.debugMode == True):
+            self.Log("Gyroturn", "Turning to heading " + str(angle) + "\n")
+
         # Checks for abort
         if (self.hub.right_button.is_pressed()):
             return ()
@@ -86,12 +100,21 @@ class BaseRobot():
             while (MotionSensor().get_yaw_angle() < angle):
                 # If it it is positive it starts turning right.
                 self.driveMotors.start_tank(gyroTurnSpeed, -gyroTurnSpeed)
+                if (self.debugMode == True):
+                    self.Log("Gyroturn", "Current heading " + str(MotionSensor().get_yaw_angle()) + "\n")
         else:
             while (MotionSensor().get_yaw_angle() > angle):
                 # If it it is not positive it starts turning left.
                 self.driveMotors.start_tank(-gyroTurnSpeed, gyroTurnSpeed)
+                if (self.debugMode == True):
+                    self.Log("Gyroturn", "Current heading " + str(MotionSensor().get_yaw_angle()) + "\n")
         # Stops when it is it has reached the desired angle
         self.driveMotors.stop()
+        if (self.debugMode == True):
+            self.Log("Gyroturn", "Stopping the turn. Current heading " + str(MotionSensor().get_yaw_angle()) + "\n")
+        wait_for_seconds(0.5)
+        if (self.debugMode == True):
+            self.Log("Gyroturn", "Final heading " + str(MotionSensor().get_yaw_angle()) + "\n")
 
     def GyroDriveOnHeading(self, distance, heading, maximumSpeed=50):
         """
