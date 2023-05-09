@@ -235,27 +235,33 @@ while True:
     # color of the attachment. When the mission is done executing,
     # loop back into the inner loop and do it all again
     if br.colorSensor.get_color() == "violet":
+        br.hub.light_matrix.show_image("CLOCK1")
         mission1() # First run; Power Plant
         
         
     if br.colorSensor.get_color() == "yellow":
+        br.hub.light_matrix.show_image("CLOCK1")
         mission2() # Toy Factory
         
        
     if br.colorSensor.get_color() == "red":
+        br.hub.light_matrix.show_image("CLOCK1")
         mission3() # Oil Refinery
         
        
 
     if br.colorSensor.get_color() == "green":
+        br.hub.light_matrix.show_image("CLOCK1")
         mission4() # Solar farm
         
 
     if br.colorSensor.get_color() == "blue":
+        br.hub.light_matrix.show_image("CLOCK1")
         mission5() # Pick up north energy units
         
         
     if br.colorSensor.get_color() == "cyan":
+        br.hub.light_matrix.show_image("CLOCK1")
         mission6() # Box thing
         
         
