@@ -20,16 +20,15 @@ br = base_robot.BaseRobot()
 ##    Zack     ##
 #################
 def mission1(): #violet
-    
-
-    br.MoveTank(70, 'cm', 55, 50)
-    br.RightMedMotorRunForSeconds(1, 50)
-    # br.RightMedMotorRunForDegrees(400, 50)
+    br.rightMedMotor.set_stop_action('coast')
+    br.MoveTank(56, 'cm', 65, 55)
+    br.LeftMedMotorRunForSeconds(.75, -50)
+    br.MoveTank(15,"cm",42,40)
+    br.MoveTank(-15,"degrees",25,25)
+    br.RightMedMotorRunForDegrees(200,30)
+    br.RightMedMotorRunForSeconds(3,-25)
     br.WaitForSeconds(.5)
-    br.RightMedMotorRunForSeconds(1.5, -50)
-    # br.RightMedMotorRunForDegrees(-420,40)
-    br.WaitForSeconds(.5)
-    br.MoveTank(-70, 'cm', 100, 100)
+    br.MoveTank(85, 'cm', -100, -95)
 
 
 
@@ -193,7 +192,7 @@ def mission2(): #Yellow
 def mission6():
     br.AccelGyroDriveForward(53)
     br.GyroTurn(-24)
-    br.MoveTank(25, 'cm', 50, 50)
+    br.MoveTank(40, 'cm', 50, 50)
     br.WaitForSeconds(.5)
     br.driveMotors.start_tank(-35, -35)
     br.WaitForSeconds(.5)

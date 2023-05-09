@@ -310,10 +310,10 @@ class BaseRobot():
         """
         Waits until the left button is pressed.
         """
-        self.hub.left_button.wait_until_pressed()
-        # Checks for abort after incase you want to rerun part of a mission
-        if (self.hub.right_button.is_pressed()):
-            return ()
+        while self.hub.left_button.is_pressed() == False:
+            # Checks for abort after incase you want to rerun part of a mission
+            if (self.hub.right_button.is_pressed()):
+                return ()
 
     def WaitForSeconds(self, seconds):
         wait_for_seconds(seconds)
