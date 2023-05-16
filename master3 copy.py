@@ -21,8 +21,7 @@ br = base_robot.BaseRobot()
 #################
 
 
-def mission1():  # violet
-
+def mission1():  # white
     br.rightMedMotor.set_stop_action('coast')
     br.MoveTank(56, 'cm', 65, 55)
     br.LeftMedMotorRunForSeconds(1, -50)
@@ -47,8 +46,8 @@ def mission3(): #Red
 
     #release oil three times
     for i in range(3):
-        br.LeftMedMotorRunForSeconds(.6, -45)
-        br.LeftMedMotorRunForSeconds(.6, 45)
+        br.LeftMedMotorRunForSeconds(.8, -45)
+        br.LeftMedMotorRunForSeconds(.8, 45)
 
     #set up to grab truck
     br.GyroTurn(45)
@@ -111,50 +110,71 @@ def mission4():
 def mission5():
 
     # First put the truck in the ellipse
+    br.hub.motion_sensor.reset_yaw_angle()
+    br.WaitForSeconds(.5)
     br.MoveTank(78, "cm", 100, 100)
     br.MoveTank(-78, "cm", 100, 100)
-
+    br.WaitForButtonPress()
+    # dinosaur 
+    br.rightMedMotor.run_for_seconds(1, -100)
+    br.rightMedMotor.run_for_seconds(.25, 100)
+    
+    # tv mission
+    br.WaitForButtonPress()
+    br.MoveTank(46,"cm",50,50)
+    br.MoveTank(-40,"cm",50,50)
     # After returning to launch area, place the robot in the
     # launch spot by hand, and then press the left button
     # to continue
+
+    # Send to the car mission,
+
     br.WaitForButtonPress()
-    br.MoveTank(46, "cm", 50, 50)
-    br.MoveTank(-31, "cm", 50, 50)
-
-    br.WaitForSeconds(.5)
-    br.GyroTurn(-39)
-
-    br.MoveTank(85, "cm", 50, 50)
-    br.RightMedMotorRunForDegrees(720, 400)
-
-    br.RightMedMotorRunForDegrees(-720, 400)
-    br.MoveTank(-27, "cm", 50, 50)
-
-    br.RightMedMotorRunForDegrees(720, 400)
-    br.GyroTurn(80)
+    br.AccelGyroDriveForward(30)
+    br.GyroTurn(-35)
+    br.AccelGyroDriveForward(72)
+    br.MoveTank(1, "seconds", 5, -5)
+    br.MoveTank(.5, "seconds", -5, 5)
+    br.RightMedMotorRunForDegrees(480)
+    br.RightMedMotorRunForDegrees(-480)
+    br.MoveTank(.5, "seconds", -5, 5)
+    
+    # # back to home
+    br.GyroTurn(-20)
+    br.MoveTank(-100, "cm", 100, 100)
+    
 
     # Windmill variables
-    delay = 0.5
-    rammingspeed = 30
-    t = 1  # seconds
+    br.WaitForButtonPress()
+    
+    br.MoveTank(10,"cm", 50,50)
+    br.RightMedMotorRunForDegrees(300)
+    br.GyroTurn(-20)
+    br.MoveTank(60,"cm",100,100)
+    br.GyroTurn(60)
+    delay= 0.5
+    rammingspeed=50
+    t = 1 #seconds
     dist = 4
 
-    br.MoveTank(23, "cm", 50, 50)
+    
 
     # operate the windmill three times
-    for i in range(3):
-        br.MoveTank(amount=t, unit="seconds",
-                    left_speed=rammingspeed, right_speed=rammingspeed)
+    for i in range(4):
+        br.MoveTank(amount=t, unit= "seconds", \
+            left_speed=rammingspeed, right_speed=rammingspeed)
         br.WaitForSeconds(delay)
-        br.MoveTank(dist, unit="cm", left_speed=-
-                    rammingspeed, right_speed=-rammingspeed)
+        br.MoveTank(dist, unit= "cm", left_speed = \
+            -rammingspeed, right_speed=-rammingspeed)
         br.WaitForSeconds(delay)
-
+    
     br.MoveTank(-10)
-
+    
     br.GyroTurn(100)
+    
+    br.MoveTank(78,"cm",100,100)
 
-    br.MoveTank(78, "cm", 100, 100)
+
 
 
 #################
@@ -216,7 +236,7 @@ while True:
     # and broke out of the inner loop. Now execute the mission for the
     # color of the attachment. When the mission is done executing,
     # loop back into the inner loop and do it all again
-    if br.colorSensor.get_color() == "violet":
+    if br.colorSensor.get_color() == "white":
         br.hub.light_matrix.show_image("CLOCK1")
         mission1() # First run; Power Plant
         
