@@ -85,8 +85,8 @@ def mission3(): #Red
 #####################
 def mission4():
      # Drive 70 centimeters
-    br.AccelGyroDriveForward(73)
-    br.GyroTurn(90)
+    br.AccelGyroDriveForward(78)
+    br.GyroTurn(70)
     # Drive backwards 20 centimeters
     br.MoveTank(-20, 'cm', 50, 50)
     # Turn 10 degrees to the right
@@ -116,7 +116,7 @@ def mission5():
     br.MoveTank(-78, "cm", 100, 100)
     br.WaitForButtonPress()
     # dinosaur 
-    br.rightMedMotor.run_for_seconds(1, -100)
+    br.rightMedMotor.run_for_seconds(1.5, -100)
     br.rightMedMotor.run_for_seconds(.25, 100)
     
     # tv mission
@@ -146,7 +146,7 @@ def mission5():
 
     # Windmill variables
     br.WaitForButtonPress()
-    
+    br.RightMedMotorRunForSeconds(1,100)
     br.MoveTank(10,"cm", 50,50)
     br.RightMedMotorRunForDegrees(300)
     br.GyroTurn(-20)
@@ -227,9 +227,6 @@ while True:
             br.hub.status_light.off()
 
         if br.hub.left_button.is_pressed():
-            break
-
-        if br.hub.right_button.is_pressed():
             break
 
     # Outer loop. When we get here, it's because we pressed a button
